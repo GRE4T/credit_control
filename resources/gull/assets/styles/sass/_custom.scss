@@ -1,0 +1,25 @@
+.auth-layout-wrap {
+    background-repeat: no-repeat;
+    background-position-y: top;
+    background-position-x: right;
+    background-size: auto !important;
+}
+
+.layout-sidebar-large {
+    .main-header {
+        .logo {
+            img {
+                width: 75px !important;
+                height: 75px !important;
+            }
+        }
+    }
+}
+
+.breadcrumb ul li::after {
+    content: none !important;
+}
+
+table.dataTable tbody td {
+    max-width: 350px;
+}

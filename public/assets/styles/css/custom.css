@@ -1,0 +1,47 @@
+.escritorio::before {
+    content: url("../../images/icons/escritorio.svg");
+}
+
+.dominios::before {
+    content: url("../../images/icons/dominios.svg");
+}
+
+.clientes::before {
+    content: url("../../images/icons/clientes.svg");
+}
+
+.proveedores::before {
+    content: url("../../images/icons/proveedores.svg");
+}
+
+.redes-sociales::before {
+    content: url("../../images/icons/redes-sociales.svg");
+}
+
+.ayuda::before {
+    content: url("../../images/icons/ayuda.svg");
+}
+
+.servidores::before {
+    content: url("../../images/icons/servidores.svg");
+}
+
+.emails::before {
+    content: url("../../images/icons/emails.svg");
+}
+
+.certificates::before {
+    content: url("../../images/icons/certificates.svg");
+}
+
+.main-content-wrap {
+    background-image: url("../../images/bg-login.png") !important;
+    background-repeat: no-repeat !important;
+    background-position-x: right !important;
+    background-position-y: top !important;
+    background-size: 300px !important;
+}
+
+.shortcut-profile{
+    max-width:3rem;
+}
