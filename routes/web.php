@@ -81,61 +81,22 @@ Route::middleware('auth')->group(function () {
         Route::view('dashboard/dashboard4', 'dashboard.dashboardv4')->name('dashboard_version_4');
         Route::view('dashboard/dashboard', 'dashboard.dashboard')->name('dashboard');
 
-        // Route::view('social-media', 'pages.social-media.index')->name('social-media');
-        Route::get('/social-media/grid', [SocialMediumController::class, 'grid']);
-        Route::resource('/social-media', SocialMediumController::class);
 
         Route::view('help', 'pages.help.index')->name('help');
 
-        //Routes Originals
-        //Route::view('providers', 'pages.providers')->name('providers');
-        Route::get('/providers/grid', [ProviderController::class, 'grid']);
-        Route::resource('/providers', ProviderController::class);
 
-        //Routes clients
-        Route::get('/clients/grid', [ClientController::class, 'grid']);
-        Route::resource('/clients', ClientController::class);
 
-        //Routes servers
-        Route::get('/servers/grid', [ServerController::class, 'grid']);
-        Route::get('/servers/expired', [ServerController::class, 'serversExpired']);
-        Route::get('/servers/expires-soon', [ServerController::class, 'serversExpiresSoon']);
-        Route::get('/servers/{so}/bySO', [ServerController::class, 'getServerBySO']);
-        Route::resource('/servers', ServerController::class);
 
-        //Routes domains
-        Route::get('/domains/grid', [DomainController::class, 'grid']);
-        Route::get('/domains/expired', [DomainController::class, 'domainsExpired']);
-        Route::get('/domains/expires-soon', [DomainController::class, 'domainsExpiresSoon']);
-        Route::resource('/domains', DomainController::class);
 
-        //Routes emails
-        Route::get('/emails/grid', [EmailController::class, 'grid']);
-        Route::get('/emails/expired', [EmailController::class, 'emailsExpired']);
-        Route::get('/emails/expires-soon', [EmailController::class, 'emailsExpiresSoon']);
-        Route::resource('/emails', EmailController::class);
 
-        //Routes certificates
-        Route::get('/certificates/grid', [CertificateController::class, 'grid']);
-        Route::get('/certificates/expired', [CertificateController::class, 'certificatesExpired']);
-        Route::get('/certificates/expires-soon', [CertificateController::class, 'certificatesExpiresSoon']);
-        Route::resource('/certificates', CertificateController::class);
 
-        //Routes users
-        Route::get('/users/grid', [UserController::class, 'grid'])->middleware('is.admin');
-        Route::resource('/users', UserController::class)->middleware('is.admin');
 
         //Route profile
         Route::view('/user/profile', 'others.user-profile')->name('user.profile');
         Route::put('/user/updateProfile', [UserController::class, 'updateProfile'])->name('user.update');
         Route::post('/user/updatePassword', [UserController::class, 'updatePassword'])->name('user.password');
 
-        //Routes subscriptions
-        Route::get('/subscriptions/grid', [SubscriptionController::class, 'grid']);
-        Route::get('/subscriptions/expired', [SubscriptionController::class, 'subscriptionsExpired']);
-        Route::get('/subscriptions/expires-soon', [SubscriptionController::class, 'subscriptionsExpiresSoon']);
-        Route::resource('/subscriptions', SubscriptionController::class);
- 
+
         // uiKits
         Route::view('uikits/alerts', 'uiKits.alerts')->name('alerts');
         Route::view('uikits/accordion', 'uiKits.accordion')->name('accordion');
@@ -254,9 +215,6 @@ Route::post('/logout',  [LoginController::class, 'logout'])->name('logout');
 Route::get('/register',  [RegisterController::class, 'index'])->name('register');
 Route::post('/register',  [RegisterController::class, 'register'])->name('register');
 
-// Login con redes sociales
-Route::get('/login/{drive}', [LoginController::class, 'redirectToProvider']);
-Route::get('/login/{drive}/callback', [LoginController::class, 'handleProviderCallback']);
 
 //Forgot Password
 Route::get('/forgot-password', [PasswordController::class, 'index'])->name('password.forgot');
@@ -264,5 +222,3 @@ Route::post('/forgot-password', [PasswordController::class, 'forgotPassword'])->
 Route::get('/reset-password/{token}', [PasswordController::class, 'resetPassword'])->name('password.reset');
 Route::post('/reset-password', [PasswordController::class, 'passwordUpdate'])->name('password.update');
 
-Route::view('/security-policies', 'pages.polices-privacy.politics')->name('policies.security');
-Route::view('/privacy-policies', 'pages.polices-privacy.treatment')->name('policies.privacy');
