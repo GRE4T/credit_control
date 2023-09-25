@@ -56,36 +56,14 @@
                     </form>
 
                     <p class="mt-3 mb-2 text-center load"> -- O -- </p>
-                    <a href="{{ url('login/facebook') }}" class="btn btn-block btn-primary">Iniciar sesión con Facebook</a>
-                    <a href="{{ url('login/google') }}" class="btn btn-block btn-danger">Iniciar sesión con google</a>
                     <div class="mt-3 text-center">
                         <a href="{{ route('password.forgot') }}" class="text-muted"><u>¿Olvidaste tu contraseña?</u></a>
                     </div>
                     <div class="mt-3 text-center">
                         <a href="{{ route('register') }}" class="text-muted d-block"><u>Registrarme</u></a>
-                        <a href="{{ route('policies.security') }}" class="text-muted d-block"><u>Politicas de seguridad de la información</u></a>
-                        <a href="{{ route('policies.privacy') }}" class="text-muted d-block"><u>Politicas de privacidad y tratamiento de datos personales</u></a>
                     </div>
                 </div>
             </div>
-            {{-- <div class="col-md-6 text-center "
-                        style="background-size: cover;background-image: url({{asset('assets/images/photo-long-3.jpg')}}">
-                <div class="pr-3 auth-right">
-                    @if (Route::has('register'))
-
-
-                    <a href="{{ route('register') }}" class="btn btn-rounded btn-outline-primary btn-outline-email btn-block btn-icon-text">
-                        <i class="i-Mail-with-At-Sign"></i> Sign up with Email
-                    </a>
-                    @endif
-                    <a class="btn btn-rounded btn-outline-primary btn-outline-google btn-block btn-icon-text">
-                        <i class="i-Google-Plus"></i> Sign up with Google
-                    </a>
-                    <a class="btn btn-rounded btn-outline-primary btn-block btn-icon-text btn-outline-facebook">
-                        <i class="i-Facebook-2"></i> Sign up with Facebook
-                    </a>
-                </div>
-            </div> --}}
         </div>
     </div>
 </div>

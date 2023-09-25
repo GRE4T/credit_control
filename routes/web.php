@@ -40,15 +40,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
     Route::middleware('verified')->group(function () {
-        Route::get('/', [HomeController::class, 'index'])->name('home');
-        Route::get('/home', function () {
-            return redirect('/');
-        });
 
-        Route::get('/home/domains-expired', [HomeController::class, 'domainsExpired']);
-        Route::get('/home/domains-expires-soon', [HomeController::class, 'domainsExpiresSoon']);
-        Route::get('/home/get-donante-domains', [HomeController::class, 'getDonateDomains']);
+        //Route profile
+        Route::view('/user/profile', 'others.user-profile')->name('user.profile');
+        Route::put('/user/updateProfile', [UserController::class, 'updateProfile'])->name('user.update');
+        Route::post('/user/updatePassword', [UserController::class, 'updatePassword'])->name('user.password');
 
+    // ---------------------------------------------------------------------------------------------------------------------------------
 
         Route::get('large-compact-sidebar/dashboard/dashboard1', function () {
             // set layout sesion(key)
@@ -83,18 +81,6 @@ Route::middleware('auth')->group(function () {
 
 
         Route::view('help', 'pages.help.index')->name('help');
-
-
-
-
-
-
-
-
-        //Route profile
-        Route::view('/user/profile', 'others.user-profile')->name('user.profile');
-        Route::put('/user/updateProfile', [UserController::class, 'updateProfile'])->name('user.update');
-        Route::post('/user/updatePassword', [UserController::class, 'updatePassword'])->name('user.password');
 
 
         // uiKits
