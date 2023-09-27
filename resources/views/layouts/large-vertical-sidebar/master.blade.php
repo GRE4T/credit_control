@@ -6,7 +6,7 @@
     <!-- ============ end of header menu ============= -->
 
      {{-- @include('layouts.large-vertical-sidebar.sidebar') --}}
-     <x-sidebar-menu /> 
+     <x-sidebar-menu />
 
     <!-- ============ end of left sidebar ============= -->
 
@@ -14,7 +14,7 @@
     <div class="main-content-wrap sidenav-open d-flex flex-column flex-grow-1">
 
         <div class="breadcrumb h2 mb-3">
-            Bienvenido a &nbsp;<b>Bodega cloud</b>
+            Bienvenido a &nbsp;<b>Convenios</b>
         </div>
 
         <div class="main-content">
