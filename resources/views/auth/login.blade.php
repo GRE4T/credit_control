@@ -7,10 +7,10 @@
             <div class="col-md-12">
                 <div class="p-4">
                     <div class="auth-logo text-center mb-4">
-                        <img src="{{asset('assets/images/logo-bodega-cloud-lg.svg')}}" alt="">
+                        <img src="{{asset('assets/images/logo_random.png')}}" alt="">
                     </div>
                     <h1 class="mb-3 p-2 text-18 bg-primary text-white rounded rounded-pill text-center">
-                        Bienvenido a Bodega Cloud</h1>
+                        Nombre Web Site</h1>
                     @if (session('register-success'))
                     <div class="alert alert-card alert-success" role="alert">
                         <strong class="text-capitalize">Mensaje: </strong> {{ session('register-success') }}

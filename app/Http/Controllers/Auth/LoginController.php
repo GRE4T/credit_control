@@ -3,15 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\SessionAudit;
-use App\Models\SocialProfile;
-use App\Models\User;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Laravel\Socialite\Facades\Socialite;
-use Carbon\Carbon;
 
 class LoginController extends Controller
 {
@@ -32,16 +25,9 @@ class LoginController extends Controller
 
         if(Auth::attempt([
             'email' => $request->email,
-            'password' => $request->password,
-            'active' => 1,
+            'password' => $request->password
         ])){
             $request->session()->regenerate();
-
-            SessionAudit::create([
-                'user_id' => Auth::id(),
-                'type_session' => 'Login',
-                'ip_address' => $request->ip()
-            ]);
 
             return  redirect()->intended('/');
         }

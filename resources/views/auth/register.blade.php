@@ -27,7 +27,7 @@
             <div class="col-12">
                 <div class="p-4">
                     <div class="auth-logo text-center mb-4">
-                        <img src="{{asset('assets/images/icons/logo.svg')}}" alt="">
+                        <img src="{{asset('assets/images/icons/logo.png')}}" alt="">
                     </div>
                     <h1 class="mb-3 text-18">Registrarse</h1>
                     @if (session('register-error'))

@@ -10,7 +10,7 @@
             </li>
             @if (Auth::user()->is_admin)
             <li class="nav-item {{ request()->is('users') ? 'active' : '' }}" >
-                <a class="nav-item-hold" href="{{route('users.index')}}">
+                <a class="nav-item-hold" href="{{route('home')}}">
                     <i class="nav-icon clientes"></i>
                     <span class="nav-text">Usuarios</span>
                 </a>
@@ -18,36 +18,36 @@
             </li>
             @endif
             <li class="nav-item {{ request()->is('providers') ? 'active' : '' }}">
-                <a class="nav-item-hold" href="{{route('providers.index')}}">
+                <a class="nav-item-hold" href="{{route('home')}}">
                     <i class="nav-icon proveedores"></i>
                     <span class="nav-text">Proveedores</span>
                 </a>
                 <div class="triangle"></div>
             </li>
             <li class="nav-item {{ request()->is('servers') ? 'active' : '' }}" >
-                <a class="nav-item-hold" href="{{route('servers.index')}}">
+                <a class="nav-item-hold" href="{{route('home')}}">
                     <i class="nav-icon servidores"></i>
                     <span class="nav-text">Hosting <br> Servidores</span>
                 </a>
                 <div class="triangle"></div>
             </li>
             <li class="nav-item {{ request()->is('domains') ? 'active' : '' }}" >
-                <a class="nav-item-hold" href="{{route('domains.index')}}">
+                <a class="nav-item-hold" href="{{route('home')}}">
                     <i class="nav-icon dominios"></i>
                     <span class="nav-text">Dominios</span>
                 </a>
                 <div class="triangle"></div>
             </li>
             <li class="nav-item {{ request()->is('certificates') ? 'active' : '' }}" >
-                <a class="nav-item-hold" href="{{route('certificates.index')}}">
+                <a class="nav-item-hold" href="{{route('home')}}">
                     <i class="nav-icon certificates"></i>
                     <span class="nav-text">Certificados</span>
                 </a>
                 <div class="triangle"></div>
-            </li>           
-           
+            </li>
+
             <li class="nav-item {{ request()->is('clients') ? 'active' : '' }}" >
-                <a class="nav-item-hold" href="{{route('clients.index')}}">
+                <a class="nav-item-hold" href="{{route('home')}}">
                     <i class="nav-icon clientes"></i>
                     <span class="nav-text">Clientes</span>
                 </a>
@@ -55,21 +55,21 @@
             </li>
 
             <li class="nav-item {{ request()->is('social-media') ? 'active' : '' }}">
-                <a class="nav-item-hold" href="{{route('social-media.index')}}">
+                <a class="nav-item-hold" href="{{route('home')}}">
                     <i class="nav-icon redes-sociales"></i>
                     <span class="nav-text">Redes sociales</span>
                 </a>
                 <div class="triangle"></div>
             </li>
             <li class="nav-item {{ request()->is('emails') ? 'active' : '' }}">
-                <a class="nav-item-hold" href="{{route('emails.index')}}">
+                <a class="nav-item-hold" href="{{route('home')}}">
                     <i class="nav-icon emails"></i>
                     <span class="nav-text">Correos electrónicos</span>
                 </a>
                 <div class="triangle"></div>
             </li>
             <li class="nav-item {{ request()->is('subscriptions') ? 'active' : '' }}">
-                <a class="nav-item-hold" href="{{route('subscriptions.index')}}">
+                <a class="nav-item-hold" href="{{route('home')}}">
                     <i class="nav-icon clientes"></i>
                     <span class="nav-text">Suscripciones</span>
                 </a>

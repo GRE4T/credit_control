@@ -110,11 +110,11 @@
     <!-- ============ Customizer UI Start ============= -->
 
 
+    @yield('page-js')
 
     {{-- common js --}}
     <script src="{{ asset('assets/js/common-bundle-script.js') }}"></script>
     {{-- page specific javascript --}}
-    @yield('page-js')
 
     {{-- theme javascript --}}
     {{-- <script src="{{ mix('assets/js/es5/script.js') }}"></script>
@@ -153,8 +153,7 @@
     <script src="{{ asset('assets/js/customizer.script.js') }}"></script>
     <script src="{{asset('assets/js/vendor/echarts.min.js')}}"></script>
     <script src="{{asset('assets/js/es5/echart.options.min.js')}}"></script>
-    <script src="{{asset('assets/js/es5/dashboard.script.js')}}"></script>
-    <script src="{{asset('assets/js/vendor/datatables.min.js')}}"></script>
+    {{--<script src="{{asset('assets/js/es5/dashboard.script.js')}}"></script>--}}
 
     {{-- laravel js --}}
     {{-- <script src="{{ mix('assets/js/laravel/app.js') }}"></script>

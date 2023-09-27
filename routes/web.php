@@ -4,16 +4,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerificationController;
-use App\Http\Controllers\CertificateController;
-use App\Http\Controllers\ClientController;
-use App\Http\Controllers\DomainController;
-use App\Http\Controllers\EmailController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProviderController;
-use App\Http\Controllers\ServerController;
-use App\Http\Controllers\SocialMediumController;
-use App\Http\Controllers\SubscriptionController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\AgreementController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,10 +33,20 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
     Route::middleware('verified')->group(function () {
 
+        //Navigation base
+        Route::get('/', [HomeController::class, 'index']);
+        Route::get('/home', function (){
+            return redirect('/');
+        })->name('home');
+
+        //Agreements
+        Route::resource('/agreements', AgreementController::class)->except('show');
+
+
         //Route profile
         Route::view('/user/profile', 'others.user-profile')->name('user.profile');
-        Route::put('/user/updateProfile', [UserController::class, 'updateProfile'])->name('user.update');
-        Route::post('/user/updatePassword', [UserController::class, 'updatePassword'])->name('user.password');
+        // Route::put('/user/updateProfile', [UserController::class, 'updateProfile'])->name('user.update');
+        // Route::post('/user/updatePassword', [UserController::class, 'updatePassword'])->name('user.password');
 
     // ---------------------------------------------------------------------------------------------------------------------------------
 

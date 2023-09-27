@@ -13,7 +13,7 @@
 <div class="card user-profile o-hidden mb-4">
     <div class="header-cover" style="background-image: url({{asset('assets/images/photo-wide-2.jpg')}}"></div>
     <div class="user-info">
-        <img class="profile-picture bg-white avatar-lg mb-2" src="{{asset('assets/images/icons/logo.svg')}}" alt="">
+        <img class="profile-picture bg-white avatar-lg mb-2" src="{{asset('assets/images/icons/logo.png')}}" alt="">
         <p class="m-0 text-24">{{ Auth::user()->name }}</p>
         <p class="text-muted m-0">{{ Auth::user()->role->name}}</p>
     </div>

@@ -42,17 +42,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         'email_verified_at' => 'datetime',
     ];
 
-    protected $appends = ['is_admin'];
 
-    public function getIsAdminAttribute()
-    {
-        return $this->attributes['role_id'] == 'ROLE_ADMIN';
-    }
-
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
-    }
 
     public function sendPasswordResetNotification($token)
     {
@@ -62,27 +52,10 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 
     }
 
-    public function sessionAudits()
-    {
-        return $this->hasMany(SessionAudit::class);
-    }
-
     public function lastConnection()
     {
-        $connection = $this->sessionAudits()->where('type_session', 'Login')->orderBy('id','desc')->first();
-        
-        if($connection){
-
-            $date = Carbon::parse($connection->created_at);
-
-            return ucfirst($date->isoFormat('dddd\ D \d\e MMMM \d\e\l Y'));
-
-        }
-
-        return;
+        $date = Carbon::now();
+        return ucfirst($date->isoFormat('dddd\ D \d\e MMMM \d\e\l Y'));
     }
 
-    public function socialProfiles(){
-        return $this->hasMany(SocialProfile::class);
-    }
 }

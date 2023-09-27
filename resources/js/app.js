@@ -1,5 +1,8 @@
-require('./bootstrap');
 import swal from 'sweetalert2';
-window.$ = require("jquery")(window)
+import jQuery from  'jquery';
 
+require('./bootstrap');
+
+window.$ = jQuery;
+window.jQuery = jQuery;
 window.Swal = swal;

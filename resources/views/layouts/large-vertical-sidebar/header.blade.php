@@ -1,7 +1,7 @@
 <div class="main-header">
     <div class="logo">
         <a href="https://bodegacloud.com" target="_blank">
-            <img src="{{asset('assets/images/icons/logo.svg')}}" alt="">
+            <img src="{{asset('assets/images/icons/logo.png')}}" alt="">
         </a>
     </div>
 
@@ -76,7 +76,7 @@
         <!-- User avatar dropdown -->
         <div class="dropdown">
             <div class="user col align-self-end">
-                <img src="{{asset('assets/images/icons/logo.svg')}}" id="userDropdown" alt="" data-toggle="dropdown"
+                <img src="{{asset('assets/images/icons/logo.png')}}" id="userDropdown" alt="" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
