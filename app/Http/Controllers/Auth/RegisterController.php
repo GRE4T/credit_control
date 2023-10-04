@@ -41,9 +41,8 @@ class RegisterController extends Controller
         }
 
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-            event(new Registered($user));
             $request->session()->regenerate();
-            return redirect()->route('verification.notice');
+            return redirect()->route('/');
         }
 
         return redirect('/login')->with('register-success', 'Usuario registrado exitosamente, para poder acceder debes verificar tu cuenta revisando el correo que te hemos enviado.');
