@@ -17,6 +17,7 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 window.$ = (jquery__WEBPACK_IMPORTED_MODULE_1___default());
+window.jQuery = (jquery__WEBPACK_IMPORTED_MODULE_1___default());
 window.Swal = (sweetalert2__WEBPACK_IMPORTED_MODULE_0___default());
 
 /***/ }),

@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AgreementController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,9 @@ Route::middleware('auth')->group(function () {
 
         //Agreements
         Route::resource('/agreements', AgreementController::class)->except('show');
+
+        //Payments
+        Route::resource('/payments', PaymentController::class)->except('show');
 
 
         //Route profile
