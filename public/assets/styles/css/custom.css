@@ -2,36 +2,40 @@
     content: url("../../images/icons/escritorio.svg");
 }
 
-.dominios::before {
+.convenios::before {
     content: url("../../images/icons/dominios.svg");
 }
 
-.clientes::before {
+.sedes::before {
     content: url("../../images/icons/clientes.svg");
 }
 
-.proveedores::before {
+.recaudo::before {
     content: url("../../images/icons/proveedores.svg");
 }
 
-.redes-sociales::before {
+.factura::before {
     content: url("../../images/icons/redes-sociales.svg");
 }
 
-.ayuda::before {
+.realizados::before {
     content: url("../../images/icons/ayuda.svg");
 }
 
-.servidores::before {
-    content: url("../../images/icons/servidores.svg");
+.recibidos::before {
+    content: url("../../images/icons/dominios.svg");
 }
 
-.emails::before {
-    content: url("../../images/icons/emails.svg");
+.informerecaudo::before {
+    content: url("../../images/icons/proveedores.svg");
 }
 
-.certificates::before {
-    content: url("../../images/icons/certificates.svg");
+.informefacturas::before {
+    content: url("../../images/icons/clientes.svg");
+}
+
+.corte::before {
+    content: url("../../images/icons/ayuda.svg");
 }
 
 .main-content-wrap {

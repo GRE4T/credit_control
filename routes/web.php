@@ -31,7 +31,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->group(function () {
-    Route::middleware('verified')->group(function () {
 
         //Navigation base
         Route::get('/', [HomeController::class, 'index']);
@@ -185,7 +184,7 @@ Route::middleware('auth')->group(function () {
         Route::view('others/faq', 'others.faq')->name('faq');
         Route::view('others/pricing-table', 'others.pricing-table')->name('pricing-table');
         Route::view('others/search-result', 'others.search-result')->name('search-result');
-    });
+
 
     //Code Status
     Route::view('notAuthorized', 'others.notAuthorized')->name('notAuthorized');
