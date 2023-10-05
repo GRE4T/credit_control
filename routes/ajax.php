@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AgreementController;
+use App\Http\Controllers\Api\HeadquarterController;
 
 
 /*
@@ -19,4 +20,9 @@ use App\Http\Controllers\Api\AgreementController;
 Route::middleware('auth')->group(function (){
     Route::get('/agreements', [AgreementController::class, 'index']);
     Route::delete('/agreements/{agreement}', [AgreementController::class, 'destroy']);
+});
+
+Route::middleware('auth')->group(function (){
+    Route::get('/headquarters', [HeadquarterController::class, 'index']);
+    Route::delete('/headquarters/{headquarter}', [HeadquarterController::class, 'destroy']);
 });

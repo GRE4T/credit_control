@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AgreementController;
+use App\Http\Controllers\HeadquarterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,9 @@ Route::middleware('auth')->group(function () {
 
         //Agreements
         Route::resource('/agreements', AgreementController::class)->except('show');
+
+        //Headquarters
+        Route::resource('/headquarters', HeadquarterController::class)->except('show');
 
 
         //Route profile
