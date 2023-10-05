@@ -16,7 +16,7 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('agreement_id')->constrained('agreements');
-            $table->foreignId('headquarter_id')->constrained('agreements');
+            $table->foreignId('headquarter_id')->constrained('headquarters');
             $table->string('credit_number');
             $table->string('credit_pos_number');
             $table->string('number_received', 20);

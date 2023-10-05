@@ -64,7 +64,6 @@ class HeadquarterController extends Controller
      */
     public function edit(Headquarter $headquarter)
     {
-        //dd($headquarter->toArray());
         return view('pages.headquarters.edit', [
             'headquarter' => $headquarter
         ]);

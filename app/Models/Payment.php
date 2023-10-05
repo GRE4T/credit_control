@@ -24,6 +24,6 @@ class Payment extends Model
     }
 
     public function headquarter(){
-        return $this->belongsTo(Agreement::class);
+        return $this->belongsTo(Headquarter::class);
     }
 }
