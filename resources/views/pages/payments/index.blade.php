@@ -6,7 +6,7 @@
             <li>
                 <img height="50px" src="{{asset('assets/images/icons/servidores.svg')}}" alt="">
             </li>
-            <li class="h5 bold">Modulo de Recaudos</li>
+            <li class="h3 bold">Modulo de Recaudos</li>
         </ul>
     </div>
     <div class="row mb-2">
@@ -20,7 +20,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive-md">
-                <table id="table_agreements" class="table table-borderless table-hover">
+                <table id="table_payments" class="table table-borderless table-hover">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -71,19 +71,34 @@
                     }
                 },
                     {
-                        data: 'name'
-                    },
-                    {
                         data: 'created_at'
                     },
                     {
-                        data: 'updated_at'
+                        data: 'agreement.name'
+                    },
+                    {
+                        data: 'value',
+                        render(data){
+                            return '$' + data;
+                        }
+                    },
+                    {
+                        data: 'headquarter.name'
+                    },
+                    {
+                        data: 'credit_pos_number'
+                    },
+                    {
+                        data: 'credit_number'
+                    },
+                    {
+                        data: 'number_received'
                     },
                     {
                         data: 'id',
                         render(data) {
                             return `
-                    <a href="{{ url('agreements') }}/${data}/edit" class="text-success mr-2">
+                    <a href="{{ url('payments') }}/${data}/edit" class="text-success mr-2">
                         <i class="nav-icon i-Pen-2 font-weight-bold"></i>
                     </a>
                     <a href="javascript:void(0)" class="text-danger mr-2" onclick="deleteServer(${data})">
@@ -108,7 +123,7 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.delete("{{ url('api/agreements') }}/" + id, null)
+                    axios.delete("{{ url('api/payments') }}/" + id, null)
                         .then((res) => {
                             Swal.fire(
                                 '¡Eliminado!',

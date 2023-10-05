@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AgreementController;
+use App\Http\Controllers\Api\PaymentController;
 
 
 /*
@@ -19,4 +20,7 @@ use App\Http\Controllers\Api\AgreementController;
 Route::middleware('auth')->group(function (){
     Route::get('/agreements', [AgreementController::class, 'index']);
     Route::delete('/agreements/{agreement}', [AgreementController::class, 'destroy']);
+
+    Route::get('/payments', [PaymentController::class, 'index']);
+    Route::delete('/payments/{payment}', [PaymentController::class, 'destroy']);
 });

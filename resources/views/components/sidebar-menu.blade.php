@@ -9,7 +9,7 @@
                 <div class="triangle"></div>
             </li>
             <li class="nav-item {{ request()->is('providers') ? 'active' : '' }}">
-                <a class="nav-item-hold" href="{{route('home')}}">
+                <a class="nav-item-hold" href="{{route('agreements.index')}}">
                     <i class="nav-icon convenios"></i>
                     <span class="nav-text">Convenios</span>
                 </a>
@@ -23,7 +23,7 @@
                 <div class="triangle"></div>
             </li>
             <li class="nav-item {{ request()->is('clients') ? 'active' : '' }}" >
-                <a class="nav-item-hold" href="{{route('home')}}">
+                <a class="nav-item-hold" href="{{route('payments.index')}}">
                     <i class="nav-icon recaudo"></i>
                     <span class="nav-text">Recaudo</span>
                 </a>

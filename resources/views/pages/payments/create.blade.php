@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('main-content')
 
-    <form action="{{  route('agreements.store')  }}" method="POST">
+    <form action="{{  route('payments.store')  }}" method="POST">
 
         <div class="card">
             <div class="card-header bg-primary text-white h5">

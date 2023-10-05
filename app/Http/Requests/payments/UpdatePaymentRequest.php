@@ -24,7 +24,11 @@ class UpdatePaymentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'agreement_id' => 'required|exists:agreements,id',
+            'headquarter_id' => 'required|exists:agreements,id',
+            'credit_number' => 'required|numeric|alpha_num',
+            'credit_pos_number' => 'required|numeric|alpha_num',
+            'number_received' => 'required|numeric|alpha_num'
         ];
     }
 }

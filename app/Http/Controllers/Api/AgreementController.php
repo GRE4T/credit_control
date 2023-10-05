@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Agreement;
-use DataTables;
+use Yajra\DataTables\DataTables;
 
 class AgreementController extends Controller
 {

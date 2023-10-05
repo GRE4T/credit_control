@@ -6,7 +6,7 @@
             <li>
                 <img height="50px" src="{{asset('assets/images/icons/servidores.svg')}}" alt="">
             </li>
-            <li class="h5 bold">Modulo de Convenios</li>
+            <li class="h3 bold">Modulo de Convenios</li>
         </ul>
     </div>
     <div class="row mb-2">
