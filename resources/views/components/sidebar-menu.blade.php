@@ -16,7 +16,7 @@
                 <div class="triangle"></div>
             </li>
             <li class="nav-item {{ request()->is('clients') ? 'active' : '' }}" >
-                <a class="nav-item-hold" href="{{route('home')}}">
+                <a class="nav-item-hold" href="{{route('headquarters.index')}}">
                     <i class="nav-icon sedes"></i>
                     <span class="nav-text">Sedes</span>
                 </a>

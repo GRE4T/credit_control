@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AgreementController;
+use App\Http\Controllers\HeadquarterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
 
@@ -44,6 +45,9 @@ Route::middleware('auth')->group(function () {
 
         //Payments
         Route::resource('/payments', PaymentController::class)->except('show');
+
+        //Headquarters
+        Route::resource('/headquarters', HeadquarterController::class)->except('show');
 
 
         //Route profile
