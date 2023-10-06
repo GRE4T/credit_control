@@ -110,4 +110,9 @@ class PaymentController extends Controller
         $payment->delete();
         return redirect()->route('payments.index');
     }
+
+    public function report()
+    {
+        return view('pages.payments.report');
+    }
 }

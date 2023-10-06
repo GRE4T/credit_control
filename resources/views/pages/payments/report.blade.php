@@ -6,13 +6,8 @@
             <li class="text-center">
                 <img src="{{asset('assets/images/icons/recaudos.png')}}" alt="" class="w-75">
             </li>
-            <li class="h3 bold">Modulo de Recaudos</li>
+            <li class="h3 bold">Informe Recaudos</li>
         </ul>
-    </div>
-    <div class="row mb-2">
-        <div class="col text-right">
-            <a class="btn btn-success" href="{{ route('payments.create')}}">Añadir nuevo</a>
-        </div>
     </div>
     <div class="card mb-4">
         <div class="card-header bg-primary text-white h5">
@@ -99,57 +94,11 @@
                     },
                     {
                         data: 'receipt_number'
-                    },
-                    {
-                        data: 'id',
-                        render(data) {
-                            return `
-                    <a href="{{ url('payments') }}/${data}/edit" class="text-success mr-2">
-                        <i class="nav-icon i-Pen-2 font-weight-bold"></i>
-                    </a>
-                    <a href="javascript:void(0)" class="text-danger mr-2" onclick="deleteServer(${data})">
-                        <i class="nav-icon i-Close font-weight-bold"></i>
-                    </a>
-                    `;
-                        }
                     }
                 ]
             });
         });
 
-        function deleteServer(id) {
-            Swal.fire({
-                title: '¿Estas seguro?',
-                text: "¡No podrás revertir esto!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Si, borrarlo!',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    axios.delete("{{ url('api/payments') }}/" + id, null)
-                        .then((res) => {
-                            Swal.fire(
-                                '¡Eliminado!',
-                                'Registro borrado exitosamente ',
-                                'success'
-                            );
-                            table.ajax.reload();
-                        })
-                        .catch((error) => {
-                            if (error) {
-                                Swal.fire(
-                                    'Cancelado',
-                                    'Este registro no puede ser eliminado :(',
-                                    'error'
-                                )
-                            }
-                        })
-                }
-            })
-        }
     </script>
 @endsection
 

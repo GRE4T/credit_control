@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('/agreements', AgreementController::class)->except('show');
 
         //Payments
+        Route::get('/payments/report', [PaymentController::class, 'report'])->name('payments.report');
         Route::resource('/payments', PaymentController::class)->except('show');
 
         //Headquarters
