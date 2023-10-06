@@ -5,7 +5,7 @@
         @method('PATCH')
         <div class="card">
             <div class="card-header bg-primary text-white h5">
-                Añadir nuevo convenio
+                Editar recaudo
             </div>
             @include('pages.payments.form')
             <div class="card-footer text-right">

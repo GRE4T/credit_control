@@ -8,29 +8,29 @@
                 </a>
                 <div class="triangle"></div>
             </li>
-            <li class="nav-item {{ request()->is('providers') ? 'active' : '' }}">
+            <li class="nav-item {{ request()->is('agreements') ? 'active' : '' }}">
                 <a class="nav-item-hold" href="{{route('agreements.index')}}">
                     <i class="nav-icon convenios"></i>
                     <span class="nav-text">Convenios</span>
                 </a>
                 <div class="triangle"></div>
             </li>
-            <li class="nav-item {{ request()->is('clients') ? 'active' : '' }}" >
+            <li class="nav-item {{ request()->is('headquarters') ? 'active' : '' }}" >
                 <a class="nav-item-hold" href="{{route('headquarters.index')}}">
                     <i class="nav-icon sedes"></i>
                     <span class="nav-text">Sedes</span>
                 </a>
                 <div class="triangle"></div>
             </li>
-            <li class="nav-item {{ request()->is('clients') ? 'active' : '' }}" >
+            <li class="nav-item {{ request()->is('payments') ? 'active' : '' }}" >
                 <a class="nav-item-hold" href="{{route('payments.index')}}">
                     <i class="nav-icon recaudo"></i>
                     <span class="nav-text">Recaudo</span>
                 </a>
                 <div class="triangle"></div>
             </li>
-            <li class="nav-item {{ request()->is('clients') ? 'active' : '' }}" >
-                <a class="nav-item-hold" href="{{route('home')}}">
+            <li class="nav-item {{ request()->is('invoices') ? 'active' : '' }}" >
+                <a class="nav-item-hold" href="{{route('invoices.index')}}">
                     <i class="nav-icon factura"></i>
                     <span class="nav-text">Facturas</span>
                 </a>

@@ -3,12 +3,13 @@
     <div class="form-row">
         <div class="form-group col-12 col-md-6">
             <label for="agreement_id">Convenio <span class="text-danger">(*)</span></label>
-            <select name="agreement_id" id="agreement_id" class="form-control @error('agreement_id') is-invalid @enderror" required>
-                <option value="" selected disabled>Seleccionar una opción </option>
+            <select name="agreement_id" id="agreement_id"
+                    class="form-control @error('agreement_id') is-invalid @enderror" required>
+                <option value="" selected disabled>Seleccionar una opción</option>
                 @foreach($agreements as $agreement)
                     <option value="{{ $agreement->id }}"
                             @if( old('agreement_id') && old('agreement_id') == $agreement->id) selected
-                            @elseif($agreement->id == $payment->agreement_id) selected @endif
+                            @elseif($agreement->id == $invoice->agreement_id) selected @endif
                     >{{ $agreement->name }}</option>
                 @endforeach
             </select>
@@ -20,12 +21,13 @@
         </div>
         <div class="form-group col-12 col-md-6">
             <label for="headquarter_id">Sede <span class="text-danger">(*)</span></label>
-            <select name="headquarter_id" id="headquarter_id" class="form-control @error('headquarter_id') is-invalid @enderror" required>
-                <option value="" selected disabled>Seleccionar una opción </option>
+            <select name="headquarter_id" id="headquarter_id"
+                    class="form-control @error('headquarter_id') is-invalid @enderror" required>
+                <option value="" selected disabled>Seleccionar una opción</option>
                 @foreach($headquarters as $headquarter)
                     <option value="{{ $headquarter->id }}"
                             @if( old('headquarter_id') && old('headquarter_id') == $headquarter->id) selected
-                            @elseif($headquarter->id == $payment->headquarter_id) selected @endif
+                            @elseif($headquarter->id == $invoice->headquarter_id) selected @endif
                     >{{ $headquarter->name }}</option>
                 @endforeach
             </select>
@@ -38,22 +40,24 @@
     </div>
     <div class="form-row">
         <div class="form-group col-12 col-md-6">
-            <label for="credit_number">Numero de credito # <span class="text-danger">(*)</span></label>
-            <input type="number" class="form-control @error('credit_number') is-invalid @enderror"
-                   name="credit_number" id="credit_number"
-                   value="{{ old('credit_number') ? old('credit_number') : $payment->credit_number }}" required min="1" step="1" placeholder="Ingresar numero de credito">
-            @error('credit_number')
+            <label for="invoice_pos_number">Numero de factura pos # <span class="text-danger">(*)</span></label>
+            <input type="number" class="form-control @error('invoice_pos_number') is-invalid @enderror"
+                   name="invoice_pos_number" id="invoice_pos_number"
+                   value="{{ old('invoice_pos_number') ? old('invoice_pos_number') : $invoice->invoice_pos_number }}"
+                   required min="1" step="1" placeholder="Ingresar numero de factura pos">
+            @error('invoice_pos_number')
             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
             @enderror
         </div>
         <div class="form-group col-12 col-md-6">
-            <label for="credit_pos_number">Numero de credito pos # <span class="text-danger">(*)</span></label>
-            <input type="number" class="form-control @error('credit_pos_number') is-invalid @enderror"
-                   name="credit_pos_number" id="credit_pos_number"
-                   value="{{ old('credit_pos_number') ? old('credit_pos_number') : $payment->credit_pos_number }}" required min="0" step="1" placeholder="Ingresar numero de credito pos">
-            @error('credit_pos_number')
+            <label for="invoice_agreement">Numero de factura convenio <span class="text-danger">(*)</span></label>
+            <input type="number" class="form-control @error('invoice_agreement') is-invalid @enderror"
+                   name="invoice_agreement" id="invoice_agreement"
+                   value="{{ old('invoice_agreement') ? old('invoice_agreement') : $invoice->invoice_agreement }}"
+                   required min="0" step="1" placeholder="Ingresar numero de factura convenio">
+            @error('invoice_agreement')
             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -61,23 +65,13 @@
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-12 col-md-6">
-            <label for="receipt_number">Numero de recibo <span class="text-danger">(*)</span></label>
-            <input type="number" class="form-control @error('receipt_number') is-invalid @enderror"
-                   name="receipt_number" id="receipt_number"
-                   value="{{ old('receipt_number') ? old('receipt_number') : $payment->receipt_number }}" required min="1" step="1" placeholder="Ingresar numero de recibo">
-            @error('receipt_number')
-            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-            @enderror
-        </div>
-        @if(!isset($payment->id))
+        @if(!isset($invoice->id))
             <div class="form-group col-12 col-md-6">
                 <label for="value">Valor <span class="text-danger">(*)</span></label>
                 <input type="number" class="form-control @error('value') is-invalid @enderror"
                        name="value" id="value"
-                       value="{{ old('value') ? old('value') : $payment->value }}" required min="0" step="1000" placeholder="Ingresar valor">
+                       value="{{ old('value') ? old('value') : $invoice->value }}" required min="0" step="1000"
+                       placeholder="Ingresar valor">
                 @error('value')
                 <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -88,8 +82,18 @@
             <div class="form-group col-12 col-md-6">
                 <label for="value">Valor</label>
                 <input type="number" class="form-control" id="value"
-                       value="{{ $payment->value }}"  disabled>
+                       value="{{ $invoice->value }}" disabled>
             </div>
         @endif
+
+        <div class="form-group col-12 col-md-6">
+            <label for="detail">Detalle </label>
+            <textarea name="detail" id="detail" cols="30" rows="10" class="form-control @error('detail') is-invalid @enderror" placeholder="Ingresar detalle">{{ old('detail') ? old('detail') : $invoice->detail  }}</textarea>
+            @error('detail')
+            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+            @enderror
+        </div>
     </div>
 </div>

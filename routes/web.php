@@ -9,6 +9,7 @@ use App\Http\Controllers\AgreementController;
 use App\Http\Controllers\HeadquarterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,9 @@ Route::middleware('auth')->group(function () {
 
         //Headquarters
         Route::resource('/headquarters', HeadquarterController::class)->except('show');
+
+        //Invoices
+        Route::resource('/invoices', InvoiceController::class)->except('show');
 
 
         //Route profile
