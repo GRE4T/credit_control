@@ -3,8 +3,8 @@
 @section('main-content')
     <div class="breadcrumb">
         <ul class="d-flex align-items-center">
-            <li>
-                <img height="50px" src="{{asset('assets/images/icons/servidores.svg')}}" alt="">
+            <li class="text-center">
+                <img src="{{asset('assets/images/icons/sedes.png')}}" alt="" class="w-75">
             </li>
             <li class="h3 bold">Modulo de sede</li>
         </ul>
@@ -38,8 +38,14 @@
         </div>
     </div>
 @endsection
+
+@section('page-css')
+    <link rel="stylesheet" href="{{asset('assets/styles/vendor/datatables.min.css')}}">
+@endsection
+
 @section('page-js')
     <script defer src="{{asset('assets/js/vendor/datatables.min.js')}}"></script>
+    <script defer src="{{asset('assets/js/vendor/datatables.responsive.min.js')}}"></script>
 
     <script type="text/javascript">
         'use strict'

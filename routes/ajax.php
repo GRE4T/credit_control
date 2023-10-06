@@ -29,5 +29,6 @@ Route::middleware('auth')->group(function (){
     Route::delete('/headquarters/{headquarter}', [HeadquarterController::class, 'destroy']);
 
     Route::get('/invoices', [InvoiceController::class, 'index']);
+    Route::put('/invoices/{invoice}/change-state', [InvoiceController::class, 'changeStatus']);
     Route::delete('/invoices/{invoice}', [InvoiceController::class, 'destroy']);
 });

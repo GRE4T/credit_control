@@ -3,8 +3,8 @@
 @section('main-content')
     <div class="breadcrumb">
         <ul class="d-flex align-items-center">
-            <li>
-                <img height="50px" src="{{asset('assets/images/icons/servidores.svg')}}" alt="">
+            <li class="text-center">
+                <img src="{{asset('assets/images/icons/facturas.png')}}" alt="" class="w-75">
             </li>
             <li class="h3 bold">Modulo de Facturas</li>
         </ul>
@@ -44,8 +44,14 @@
         </div>
     </div>
 @endsection
+
+@section('page-css')
+    <link rel="stylesheet" href="{{asset('assets/styles/vendor/datatables.min.css')}}">
+@endsection
+
 @section('page-js')
     <script defer src="{{asset('assets/js/vendor/datatables.min.js')}}"></script>
+    <script defer src="{{asset('assets/js/vendor/datatables.responsive.min.js')}}"></script>
 
     <script type="text/javascript">
         'use strict'
@@ -102,10 +108,10 @@
                             if(row.state.key === '{{ config('agreements.state_1') }}')
                             {
                                 return `
-                                    <button class="bg-success mr-2 btn text-white" onclick="deleteServer(${data})">
+                                    <button class="bg-success mr-2 btn text-white" onclick="changeStatus(${data}, '{{ config('agreements.state_2') }}')">
                                         Pagar
                                     </button>
-                                    <button class="bg-danger mr-2 btn text-white" onclick="deleteServer(${data})">
+                                    <button class="bg-danger mr-2 btn text-white" onclick="changeStatus(${data}, '{{ config('agreements.state_3') }}')">
                                         Anular
                                     </button>
                                 `;
@@ -179,10 +185,13 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.delete("{{ url('api/invoices') }}/" + id, null)
+                    let data = {
+                        invoice_state_key: state
+                    };
+                    axios.put(`{{ url('api/invoices') }}/${id}/change-state`, data)
                         .then((res) => {
                             Swal.fire(
-                                '¡Eliminado!',
+                                '¡Actualización de estado!',
                                 'Registro borrado exitosamente ',
                                 'success'
                             );
@@ -192,7 +201,7 @@
                             if (error) {
                                 Swal.fire(
                                     'Cancelado',
-                                    'Este registro no puede ser eliminado :(',
+                                    'No fue posible actualizar el estado  :(',
                                     'error'
                                 )
                             }
