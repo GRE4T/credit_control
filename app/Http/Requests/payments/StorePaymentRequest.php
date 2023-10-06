@@ -25,10 +25,10 @@ class StorePaymentRequest extends FormRequest
     {
         return [
             'agreement_id' => 'required|exists:agreements,id',
-            'headquarter_id' => 'required|exists:agreements,id',
+            'headquarter_id' => 'required|exists:headquarters,id',
             'credit_number' => 'required|numeric|alpha_num',
             'credit_pos_number' => 'required|numeric|alpha_num',
-            'number_received' => 'required|numeric|alpha_num',
+            'receipt_number' => 'required|numeric|alpha_num|digits_between:0,20',
             'value' => 'required|numeric|min:0'
         ];
     }

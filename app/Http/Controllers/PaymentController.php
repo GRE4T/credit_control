@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\payments\StorePaymentRequest;
 use App\Http\Requests\payments\UpdatePaymentRequest;
 use App\Models\Agreement;
+use App\Models\Headquarter;
 use App\Models\Payment;
 
 class PaymentController extends Controller
@@ -29,7 +30,7 @@ class PaymentController extends Controller
         return view('pages.payments.create', [
             'payment' => new Payment,
             'agreements' => Agreement::all(),
-            'headquarters' => Agreement::all()
+            'headquarters' => Headquarter::all()
         ]);
     }
 
@@ -46,11 +47,11 @@ class PaymentController extends Controller
         $payment->headquarter_id = $request->headquarter_id;
         $payment->credit_number = trim($request->input('credit_number'));
         $payment->credit_pos_number = trim($request->input('credit_pos_number'));
-        $payment->number_received = trim($request->input('number_received'));
+        $payment->receipt_number = trim($request->input('receipt_number'));
         $payment->value = $request->value;
         $payment->save();
 
-        return view('pages.payments.index');
+        return redirect()->route('payments.index');
     }
 
     /**
@@ -75,7 +76,7 @@ class PaymentController extends Controller
         return view('pages.payments.edit', [
             'payment' => $payment,
             'agreements' => Agreement::all(),
-            'headquarters' => Agreement::all()
+            'headquarters' => Headquarter::all()
         ]);
     }
 
@@ -92,11 +93,10 @@ class PaymentController extends Controller
         $payment->headquarter_id = $request->headquarter_id;
         $payment->credit_number = trim($request->input('credit_number'));
         $payment->credit_pos_number = trim($request->input('credit_pos_number'));
-        $payment->number_received = trim($request->input('number_received'));
+        $payment->receipt_number = trim($request->input('receipt_number'));
         $payment->update();
 
-
-        return view('pages.payments.index');
+        return redirect()->route('payments.index');
     }
 
     /**
@@ -108,6 +108,6 @@ class PaymentController extends Controller
     public function destroy(Payment $payment)
     {
         $payment->delete();
-        return view('pages.payments.index');
+        return redirect()->route('payments.index');
     }
 }

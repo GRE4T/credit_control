@@ -15,7 +15,7 @@ class Payment extends Model
         'headquarter_id',
         'credit_number',
         'credit_pos_number',
-        'number_received',
+        'receipt_number',
         'value'
     ];
 

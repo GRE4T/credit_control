@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AgreementController;
 use App\Http\Controllers\Api\HeadquarterController;
 use App\Http\Controllers\Api\PaymentController;
-
+use App\Http\Controllers\Api\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +24,10 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/payments', [PaymentController::class, 'index']);
     Route::delete('/payments/{payment}', [PaymentController::class, 'destroy']);
-});
 
-Route::middleware('auth')->group(function (){
     Route::get('/headquarters', [HeadquarterController::class, 'index']);
     Route::delete('/headquarters/{headquarter}', [HeadquarterController::class, 'destroy']);
+
+    Route::get('/invoices', [InvoiceController::class, 'index']);
+    Route::delete('/invoices/{invoice}', [InvoiceController::class, 'destroy']);
 });

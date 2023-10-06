@@ -6,31 +6,33 @@
             <li>
                 <img height="50px" src="{{asset('assets/images/icons/servidores.svg')}}" alt="">
             </li>
-            <li class="h3 bold">Modulo de Recaudos</li>
+            <li class="h3 bold">Modulo de Facturas</li>
         </ul>
     </div>
     <div class="row mb-2">
         <div class="col text-right">
-            <a class="btn btn-success" href="{{ route('payments.create')}}">Añadir nuevo</a>
+            <a class="btn btn-success" href="{{ route('invoices.create')}}">Añadir nuevo</a>
         </div>
     </div>
     <div class="card mb-4">
         <div class="card-header bg-primary text-white h5">
-            Recaudos
+            Facturas
         </div>
         <div class="card-body">
             <div class="table-responsive-md">
-                <table id="table_payments" class="table table-borderless table-hover">
+                <table id="table_invoices" class="table table-borderless table-hover">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Fecha</th>
                         <th scope="col">Convenio</th>
                         <th scope="col">Valor</th>
+                        <th scope="col">Fact. Pos</th>
+                        <th scope="col">Fact. Convenio</th>
                         <th scope="col">Sede</th>
-                        <th scope="col">C. Pos</th>
-                        <th scope="col">#Credito</th>
-                        <th scope="col">#Recibido</th>
+                        <th scope="col">Detalle</th>
+                        <th scope="col">Afectación</th>
+                        <th scope="col">Estado</th>
                         <th scope="col">Acción</th>
                     </tr>
                     </thead>
@@ -51,7 +53,7 @@
         var table;
 
         $(document).ready(() => {
-            table = $('#table_payments').DataTable({
+            table = $('#table_invoices').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
                     'excel'
@@ -63,7 +65,7 @@
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json'
                 },
-                ajax: "{{ url('api/payments') }}",
+                ajax: "{{ url('api/invoices') }}",
                 columns: [{
                     data: 'id',
                     render(data, type, row, meta) {
@@ -83,22 +85,42 @@
                         }
                     },
                     {
+                        data: 'invoice_pos_number'
+                    },
+                    {
+                        data: 'invoice_agreement'
+                    },
+                    {
                         data: 'headquarter.name'
                     },
                     {
-                        data: 'credit_pos_number'
+                        data: 'detail'
                     },
                     {
-                        data: 'credit_number'
+                        data: 'id',
+                        render(data, type, row) {
+                            if(row.state.key === '{{ config('agreements.state_1') }}')
+                            {
+                                return `
+                                    <button class="bg-success mr-2 btn text-white" onclick="deleteServer(${data})">
+                                        Pagar
+                                    </button>
+                                    <button class="bg-danger mr-2 btn text-white" onclick="deleteServer(${data})">
+                                        Anular
+                                    </button>
+                                `;
+                            }
+                            return null;
+                        }
                     },
                     {
-                        data: 'receipt_number'
+                        data: 'state.name'
                     },
                     {
                         data: 'id',
                         render(data) {
                             return `
-                    <a href="{{ url('payments') }}/${data}/edit" class="text-success mr-2">
+                    <a href="{{ url('invoices') }}/${data}/edit" class="text-success mr-2">
                         <i class="nav-icon i-Pen-2 font-weight-bold"></i>
                     </a>
                     <a href="javascript:void(0)" class="text-danger mr-2" onclick="deleteServer(${data})">
@@ -123,7 +145,41 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.delete("{{ url('api/payments') }}/" + id, null)
+                    axios.delete("{{ url('api/invoices') }}/" + id, null)
+                        .then((res) => {
+                            Swal.fire(
+                                '¡Eliminado!',
+                                'Registro borrado exitosamente ',
+                                'success'
+                            );
+                            table.ajax.reload();
+                        })
+                        .catch((error) => {
+                            if (error) {
+                                Swal.fire(
+                                    'Cancelado',
+                                    'Este registro no puede ser eliminado :(',
+                                    'error'
+                                )
+                            }
+                        })
+                }
+            })
+        }
+
+        function changeStatus(id, state) {
+            Swal.fire({
+                title: '¿Estas seguro de actualizar el estado?',
+                text: "¡No podrás revertir esto!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Actualizar!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete("{{ url('api/invoices') }}/" + id, null)
                         .then((res) => {
                             Swal.fire(
                                 '¡Eliminado!',
