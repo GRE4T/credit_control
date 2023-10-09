@@ -3,15 +3,35 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\payments\FilterPaymentRequest;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
 class PaymentController extends Controller
 {
-    public function  index()
+    public function index(FilterPaymentRequest $request)
     {
-        return DataTables::of(Payment::query()->get()->load('agreement', 'headquarter'))->make(true);
+        $query = Payment::query();
+        if (isset($request->filters)) {
+            $filters = $request->filters;
+
+            if (isset($filters['start_date'])) {
+                $query->where('created_at', '>=', $filters['start_date']);
+            }
+
+            if (isset($filters['end_date'])) {
+                $query->where('created_at', '<=', $filters['end_date']);
+            }
+
+            unset($filters['start_date']);
+            unset($filters['end_date']);
+            foreach ($filters as $key => $value) {
+                $query->where($key, $value);
+            }
+        }
+
+        return DataTables::of($query->get()->load('agreement', 'headquarter'))->make(true);
     }
 
     public function destroy(Payment $payment)

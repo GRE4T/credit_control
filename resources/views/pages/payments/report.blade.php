@@ -14,6 +14,7 @@
             Recaudos
         </div>
         <div class="card-body">
+            <x-payments-filter  callback="callbackFilter" />
             <div class="table-responsive-md">
                 <table id="table_payments" class="table table-borderless table-hover">
                     <thead>
@@ -26,7 +27,6 @@
                         <th scope="col">C. Pos</th>
                         <th scope="col">#Credito</th>
                         <th scope="col">#Recibido</th>
-                        <th scope="col">Acción</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -40,6 +40,7 @@
 
 @section('page-css')
     <link rel="stylesheet" href="{{asset('assets/styles/vendor/datatables.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/styles/vendor/datatables.buttons.min.css')}}">
 @endsection
 
 @section('page-js')
@@ -50,10 +51,11 @@
         'use strict'
 
         var table;
+        var filters = [];
 
         $(document).ready(() => {
             table = $('#table_payments').DataTable({
-                dom: 'Bfrtip',
+                dom: 'Bfrtlip',
                 buttons: [
                     'excel'
                 ],
@@ -64,7 +66,14 @@
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json'
                 },
-                ajax: "{{ url('api/payments') }}",
+                ajax: (data, callback, settings) => {
+                    $.get('{{ url('api/payments') }}', {
+                        ...data,
+                        filters: filters
+                    }, function (response) {
+                        callback(response);
+                    });
+                },
                 columns: [{
                     data: 'id',
                     render(data, type, row, meta) {
@@ -99,6 +108,12 @@
             });
         });
 
+        function callbackFilter(params = null) {
+           filters  = params;
+            return table.ajax.reload();
+        }
     </script>
+
+    @stack('stack-script')
 @endsection
 
