@@ -54,10 +54,8 @@
 
         $(document).ready(() => {
             table = $('#table_headquarters').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'excel'
-                ],
+                dom: 'Bfrtlip',
+                buttons: [],
                 responsive: true,
                 autoWidth: false,
                 processing: true,

@@ -45,6 +45,7 @@
 
 @section('page-css')
     <link rel="stylesheet" href="{{asset('assets/styles/vendor/datatables.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/styles/vendor/datatables.buttons.min.css')}}">
 @endsection
 
 @section('page-js')
@@ -58,7 +59,7 @@
 
         $(document).ready(() => {
             table = $('#table_payments_made').DataTable({
-                dom: 'Bfrtip',
+                dom: 'Bfrtlip',
                 buttons: [
                     'excel'
                 ],
