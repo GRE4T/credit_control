@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\paymentsmade;
+namespace App\Http\Requests\paymentsreceived;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatePaymentMadeRequest extends FormRequest
+class UpdatePaymentReceivedRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,8 +27,7 @@ class UpdatePaymentMadeRequest extends FormRequest
             'agreement_id' => 'required|exists:agreements,id',
             'headquarter_id' => 'required|exists:headquarters,id',
             'type_payment' => 'nullable|string',
-            'receipt_number' => 'required|numeric|alpha_num|digits_between:0,20',
-            'detail' => 'nullable|string',
+            'receipt_number' => 'required|numeric|alpha_num|digits_between:0,20'
         ];
     }
 }

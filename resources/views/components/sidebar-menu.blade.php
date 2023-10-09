@@ -43,8 +43,8 @@
                 </a>
                 <div class="triangle"></div>
             </li>
-            <li class="nav-item {{ request()->is('clients') ? 'active' : '' }}" >
-                <a class="nav-item-hold" href="{{route('home')}}">
+            <li class="nav-item {{ request()->is('paymentsreceived') ? 'active' : '' }}" >
+                <a class="nav-item-hold" href="{{route('paymentsreceived.index')}}">
                     <img src="{{ asset('assets/images/icons/pagos_recibidos.png') }}" alt="icon-payment-received" class="w-40">
                     <span class="nav-text">Pagos <br> Recibidos</span>
                 </a>
