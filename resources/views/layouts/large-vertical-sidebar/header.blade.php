@@ -1,6 +1,6 @@
 <div class="main-header">
     <div class="logo">
-        <a href="https://bodegacloud.com" target="_blank">
+        <a href="/home" target="_blank">
             <img src="{{asset('assets/images/icons/logo.png')}}" alt="">
         </a>
     </div>

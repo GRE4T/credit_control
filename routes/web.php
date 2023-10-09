@@ -10,6 +10,8 @@ use App\Http\Controllers\HeadquarterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\PaymentMadeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +55,9 @@ Route::middleware('auth')->group(function () {
 
         //Invoices
         Route::resource('/invoices', InvoiceController::class)->except('show');
+
+        //Payments Made
+        Route::resource('/paymentsmade', PaymentMadeController::class)->except('show');
 
 
         //Route profile
