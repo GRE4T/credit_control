@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Headquarter;
+use App\Models\PaymentMade;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -69,5 +70,8 @@ class RouteServiceProvider extends ServiceProvider
     private function  explicitResolutionModels()
     {
         Route::model('headquarters', Headquarter::class);
+        Route::model('paymentsmade', PaymentMade::class);
     }
+
+
 }

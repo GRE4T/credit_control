@@ -5,6 +5,8 @@ use App\Http\Controllers\Api\AgreementController;
 use App\Http\Controllers\Api\HeadquarterController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\InvoiceController;
+use App\Http\Controllers\Api\PaymentMadeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +33,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/invoices', [InvoiceController::class, 'index']);
     Route::put('/invoices/{invoice}/change-state', [InvoiceController::class, 'changeStatus']);
     Route::delete('/invoices/{invoice}', [InvoiceController::class, 'destroy']);
+
+    Route::get('/paymentsmade', [PaymentMadeController::class, 'index']);
+    Route::delete('/paymentsmade/{paymentmade}', [PaymentMadeController::class, 'destroy']);
 });

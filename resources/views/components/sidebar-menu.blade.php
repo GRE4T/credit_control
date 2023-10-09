@@ -36,8 +36,8 @@
                 </a>
                 <div class="triangle"></div>
             </li>
-            <li class="nav-item {{ request()->is('clients') ? 'active' : '' }}" >
-                <a class="nav-item-hold" href="{{route('home')}}">
+            <li class="nav-item {{ request()->is('paymentsmade') ? 'active' : '' }}" >
+                <a class="nav-item-hold" href="{{route('paymentsmade.index')}}">
                     <img src="{{ asset('assets/images/icons/pagos_realizados.png') }}" alt="icon-payments-made" class="w-40">
                     <span class="nav-text">Pagos <br> Realizados</span>
                 </a>
