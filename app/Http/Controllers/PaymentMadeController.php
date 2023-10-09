@@ -92,7 +92,6 @@ class PaymentMadeController extends Controller
 
         $paymentmade->agreement_id = $request->agreement_id;
         $paymentmade->headquarter_id = $request->headquarter_id;
-        $paymentmade->value = $request->value;
         $paymentmade->type_payment = trim($request->input('type_payment'));
         $paymentmade->receipt_number = trim($request->input('receipt_number'));
         $paymentmade->detail = trim($request->detail);
@@ -111,10 +110,5 @@ class PaymentMadeController extends Controller
     {
         $paymentmade->delete();
         return redirect()->route('paymentsmade.index');
-    }
-
-    public function report()
-    {
-        return view('pages.paymentsmade.report');
     }
 }
