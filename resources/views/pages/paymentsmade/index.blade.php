@@ -51,7 +51,10 @@
 @section('page-js')
     <script defer src="{{asset('assets/js/vendor/datatables.min.js')}}"></script>
     <script defer src="{{asset('assets/js/vendor/datatables.responsive.min.js')}}"></script>
+    <script src="{{ asset('assets/js/custom/helper.global.js') }}"></script>
+@endsection
 
+@section('bottom-js')
     <script type="text/javascript">
         'use strict'
 
@@ -89,7 +92,7 @@
                     {
                         data: 'value',
                         render(data){
-                            return '$' + data;
+                            return parseCurrency(data);
                         }
                     },
                     {

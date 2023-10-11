@@ -19,6 +19,7 @@
             Facturas
         </div>
         <div class="card-body">
+            <x-invoices-filter callback="callbackFilter"/>
             <div class="table-responsive-md">
                 <table id="table_invoices" class="table table-borderless table-hover">
                     <thead>
@@ -53,11 +54,16 @@
 @section('page-js')
     <script defer src="{{asset('assets/js/vendor/datatables.min.js')}}"></script>
     <script defer src="{{asset('assets/js/vendor/datatables.responsive.min.js')}}"></script>
+    <script src="{{ asset('assets/js/custom/helper.global.js') }}"></script>
+@endsection
+
+@section('bottom-js')
 
     <script type="text/javascript">
         'use strict'
 
         var table;
+        var filters;
 
         $(document).ready(() => {
             table = $('#table_invoices').DataTable({
@@ -72,13 +78,21 @@
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json'
                 },
-                ajax: "{{ url('api/invoices') }}",
-                columns: [{
-                    data: 'id',
-                    render(data, type, row, meta) {
-                        return meta.settings._iDisplayStart + meta.row + 1;
-                    }
+                ajax: (data, callback, settings) => {
+                    $.get('{{ url('api/invoices') }}', {
+                        ...data,
+                        filters: filters
+                    }, function (response) {
+                        callback(response.data.grid.original);
+                    });
                 },
+                columns: [
+                    {
+                        data: 'id',
+                        render(data, type, row, meta) {
+                            return meta.settings._iDisplayStart + meta.row + 1;
+                        }
+                    },
                     {
                         data: 'created_at'
                     },
@@ -87,8 +101,8 @@
                     },
                     {
                         data: 'value',
-                        render(data){
-                            return '$' + data;
+                        render(data) {
+                            return parseCurrency(data);
                         }
                     },
                     {
@@ -106,8 +120,7 @@
                     {
                         data: 'id',
                         render(data, type, row) {
-                            if(row.state.key === '{{ config('agreements.state_1') }}')
-                            {
+                            if (row.state.key === '{{ config('agreements.state_1') }}') {
                                 return `
                                     <button class="bg-success mr-2 btn text-white" onclick="changeStatus(${data}, '{{ config('agreements.state_2') }}')">
                                         Pagar
@@ -210,6 +223,12 @@
                 }
             })
         }
+
+        function callbackFilter(params = null) {
+            filters = params;
+            return table.ajax.reload();
+        }
     </script>
+    @stack('stack-script')
 @endsection
 

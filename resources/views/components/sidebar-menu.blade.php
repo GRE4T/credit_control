@@ -58,7 +58,7 @@
                 <div class="triangle"></div>
             </li>
             <li class="nav-item {{ request()->is('clients') ? 'active' : '' }}" >
-                <a class="nav-item-hold" href="{{route('home')}}">
+                <a class="nav-item-hold" href="{{route('invoices.report')}}">
                     <img src="{{ asset('assets/images/icons/informe_facturas.png') }}" alt="icon-collection-invoice" class="w-40">
                     <span class="nav-text">Informe de <br> Facturas</span>
                 </a>

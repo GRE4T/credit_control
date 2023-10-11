@@ -46,7 +46,9 @@
 @section('page-js')
     <script defer src="{{asset('assets/js/vendor/datatables.min.js')}}"></script>
     <script defer src="{{asset('assets/js/vendor/datatables.responsive.min.js')}}"></script>
+@endsection
 
+@section('bottom-js')
     <script type="text/javascript">
         'use strict'
 

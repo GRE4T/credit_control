@@ -32,15 +32,13 @@
                 </select>
             </div>
             <div class="form-group col-12 col-md-4">
-                <label for="credit_number">Numero de credito #</label>
-                <input type="number" class="form-control"
-                       name="credit_number" id="credit_number"
-                       min="1" step="1" placeholder="Ingresar numero de credito">
-            </div>
-            <div class="form-group col-12 col-md-4">
-                <label for="receipt_number">Numero de recibo</label>
-                <input type="number" class="form-control" name="receipt_number" id="receipt_number" min="1" step="1"
-                       placeholder="Ingresar numero de recibo">
+                <label for="invoice_state_id">Estado</label>
+                <select name="invoice_state_id" id="invoice_state_id" class="form-control">
+                    <option value="" selected>Seleccionar una opción</option>
+                    @foreach($states as $state)
+                        <option value="{{ $state->id }}">{{ $state->name }}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
         <div class="form-row d-flex justify-content-end">

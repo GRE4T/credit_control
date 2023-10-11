@@ -31,7 +31,17 @@ class PaymentController extends Controller
             }
         }
 
-        return DataTables::of($query->get()->load('agreement', 'headquarter'))->make(true);
+        return response()->json([
+            'code' => 200,
+            'status' => 'success',
+            'message' => 'Successfully executed',
+            'data' => [
+                'grid' => DataTables::of($query->get()->load('agreement', 'headquarter'))->toJson(),
+                'total' => $query->sum('value')
+            ]
+        ], 200);
+
+
     }
 
     public function destroy(Payment $payment)

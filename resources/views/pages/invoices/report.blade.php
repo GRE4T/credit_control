@@ -4,14 +4,14 @@
     <div class="breadcrumb">
         <ul class="d-flex align-items-center">
             <li class="text-center">
-                <img src="{{asset('assets/images/icons/recaudos.png')}}" alt="" class="w-75">
+                <img src="{{asset('assets/images/icons/facturas.png')}}" alt="" class="w-75">
             </li>
-            <li class="h3 bold">Informe de Recaudos</li>
+            <li class="h3 bold">Informe de Facturas</li>
         </ul>
     </div>
     <div class="card mb-4">
         <div class="card-header bg-primary text-white h5">
-            Recaudos
+            Facturas
         </div>
         <div class="card-body">
             <div class="row justify-content-end">
@@ -24,19 +24,20 @@
                     </div>
                 </div>
             </div>
-            <x-payments-filter  callback="callbackFilter" />
+            <x-invoices-filter callback="callbackFilter"/>
             <div class="table-responsive-md">
-                <table id="table_payments" class="table table-borderless table-hover">
+                <table id="table_invoices" class="table table-borderless table-hover">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Fecha</th>
                         <th scope="col">Convenio</th>
                         <th scope="col">Valor</th>
+                        <th scope="col">Fact. Pos</th>
+                        <th scope="col">Fact. Convenio</th>
                         <th scope="col">Sede</th>
-                        <th scope="col">C. Pos</th>
-                        <th scope="col">#Credito</th>
-                        <th scope="col">#Recibido</th>
+                        <th scope="col">Detalle</th>
+                        <th scope="col">Estado</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -58,16 +59,15 @@
     <script defer src="{{asset('assets/js/vendor/datatables.responsive.min.js')}}"></script>
     <script src="{{ asset('assets/js/custom/helper.global.js') }}"></script>
 @endsection
-
 @section('bottom-js')
     <script type="text/javascript">
         'use strict'
 
         var table;
-        var filters = [];
+        var filters;
 
         $(document).ready(() => {
-            table = $('#table_payments').DataTable({
+            table = $('#table_invoices').DataTable({
                 dom: 'Bfrtlip',
                 buttons: [
                     'excel'
@@ -80,7 +80,7 @@
                     url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json'
                 },
                 ajax: (data, callback, settings) => {
-                    $.get('{{ url('api/payments') }}', {
+                    $.get('{{ url('api/invoices') }}', {
                         ...data,
                         filters: filters
                     }, function (response) {
@@ -89,12 +89,13 @@
                         callback(response.data.grid.original);
                     });
                 },
-                columns: [{
-                    data: 'id',
-                    render(data, type, row, meta) {
-                        return meta.settings._iDisplayStart + meta.row + 1;
-                    }
-                },
+                columns: [
+                    {
+                        data: 'id',
+                        render(data, type, row, meta) {
+                            return meta.settings._iDisplayStart + meta.row + 1;
+                        }
+                    },
                     {
                         data: 'created_at'
                     },
@@ -103,33 +104,34 @@
                     },
                     {
                         data: 'value',
-                        render(data){
+                        render(data) {
                             return parseCurrency(data);
                         }
+                    },
+                    {
+                        data: 'invoice_pos_number'
+                    },
+                    {
+                        data: 'invoice_agreement'
                     },
                     {
                         data: 'headquarter.name'
                     },
                     {
-                        data: 'credit_pos_number'
+                        data: 'detail'
                     },
                     {
-                        data: 'credit_number'
-                    },
-                    {
-                        data: 'receipt_number'
+                        data: 'state.name'
                     }
-                ]
+                ],
             });
         });
 
         function callbackFilter(params = null) {
-            filters  = params;
+            filters = params;
             return table.ajax.reload();
         }
     </script>
-
     @stack('stack-script')
 @endsection
-
 

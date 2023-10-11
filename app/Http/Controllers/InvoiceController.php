@@ -114,4 +114,9 @@ class InvoiceController extends Controller
         $invoice->delete();
         return redirect()->route('invoices.index');
     }
+
+    public function report()
+    {
+        return view('pages.invoices.report');
+    }
 }

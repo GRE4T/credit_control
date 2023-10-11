@@ -54,6 +54,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('/headquarters', HeadquarterController::class)->except('show');
 
         //Invoices
+        Route::get('/invoices/report', [InvoiceController::class, 'report'])->name('invoices.report');
         Route::resource('/invoices', InvoiceController::class)->except('show');
 
         //Payments Made
