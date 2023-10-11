@@ -8,6 +8,6 @@ class PeriodCutController extends Controller
 {
     public function index()
     {
-        return view('periodCut.index');
+        return view('pages.periodCut.index');
     }
 }

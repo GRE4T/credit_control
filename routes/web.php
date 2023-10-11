@@ -12,6 +12,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PaymentMadeController;
 use App\Http\Controllers\PaymentReceivedController;
+use App\Http\Controllers\PeriodCutController;
 
 
 
@@ -64,6 +65,9 @@ Route::middleware('auth')->group(function () {
 
         //Payments Received
         Route::resource('/paymentsreceived', PaymentReceivedController::class)->except('show');
+
+        //Period Cut
+        Route::get('/period-cut', [PeriodCutController::class, 'index'])->name('periodCut.index');
 
 
         //Route profile
