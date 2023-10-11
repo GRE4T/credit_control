@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PaymentMadeController;
+use App\Http\Controllers\PaymentReceivedController;
+
 
 
 /*
@@ -59,6 +61,9 @@ Route::middleware('auth')->group(function () {
 
         //Payments Made
         Route::resource('/paymentsmade', PaymentMadeController::class)->except('show');
+
+        //Payments Received
+        Route::resource('/paymentsreceived', PaymentReceivedController::class)->except('show');
 
 
         //Route profile
