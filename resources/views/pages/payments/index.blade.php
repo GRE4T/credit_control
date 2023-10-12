@@ -11,7 +11,7 @@
     </div>
     <div class="row mb-2">
         <div class="col text-right">
-            <a class="btn btn-success" href="{{ route('payments.create')}}">Añadir nuevo</a>
+            <a class="btn btn-success" href="{{ route('payments.create')}}">Añadir nuevo recaudo</a>
         </div>
     </div>
     <div class="card mb-4">
@@ -30,8 +30,8 @@
                         <th scope="col">Valor</th>
                         <th scope="col">Sede</th>
                         <th scope="col">C. Pos</th>
-                        <th scope="col">#Credito</th>
-                        <th scope="col">#Recibido</th>
+                        <th scope="col">N. Credito</th>
+                        <th scope="col">N. Recibo</th>
                         <th scope="col">Acción</th>
                     </tr>
                     </thead>

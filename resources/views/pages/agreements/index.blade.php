@@ -11,7 +11,7 @@
     </div>
     <div class="row mb-2">
         <div class="col text-right">
-            <a class="btn btn-success" href="{{ route('agreements.create')}}">Añadir nuevo</a>
+            <a class="btn btn-success" href="{{ route('agreements.create')}}">Añadir nuevo convenio</a>
         </div>
     </div>
     <div class="card mb-4">
@@ -24,7 +24,7 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Nombre</th>
+                        <th scope="col">Convenio</th>
                         <th scope="col">Fecha de creación</th>
                         <th scope="col">Fecha de actualización</th>
                         <th scope="col">Acción</th>

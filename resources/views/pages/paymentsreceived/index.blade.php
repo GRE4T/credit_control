@@ -19,6 +19,7 @@
             Pagos recibidos
         </div>
         <div class="card-body">
+            <x-paymentsreceived-filter  callback="callbackFilter" />
             <div class="table-responsive-md">
                 <table id="table_payments_received" class="table table-borderless table-hover">
                     <thead>
@@ -29,7 +30,7 @@
                             <th scope="col">Sede</th>
                             <th scope="col">Valor</th>
                             <th scope="col">Tipo de pago</th>
-                            <th scope="col"># Recibido</th>
+                            <th scope="col">N. Recibo</th>
                             <th scope="col">Acción</th>
                     </tr>
                     </thead>
@@ -44,20 +45,25 @@
 
 @section('page-css')
     <link rel="stylesheet" href="{{asset('assets/styles/vendor/datatables.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/styles/vendor/datatables.buttons.min.css')}}">
 @endsection
 
 @section('page-js')
     <script defer src="{{asset('assets/js/vendor/datatables.min.js')}}"></script>
     <script defer src="{{asset('assets/js/vendor/datatables.responsive.min.js')}}"></script>
+    <script src="{{ asset('assets/js/custom/helper.global.js') }}"></script>
+@endsection
 
+@section('bottom-js')
     <script type="text/javascript">
         'use strict'
 
         var table;
+        var filters = [];
 
         $(document).ready(() => {
             table = $('#table_payments_received').DataTable({
-                dom: 'Bfrtip',
+                dom: 'Bfrtlip',
                 buttons: [
                     'excel'
                 ],
@@ -68,7 +74,14 @@
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json'
                 },
-                ajax: "{{ url('api/paymentsreceived') }}",
+                ajax: (data, callback, settings) => {
+                    $.get('{{ url("api/paymentsreceived") }}', {
+                        ...data,
+                        filters: filters
+                    }, function (response) {
+                        callback(response.data.grid.original);
+                    });
+                },
                 columns: [{
                     data: 'id',
                     render(data, type, row, meta) {
@@ -86,8 +99,8 @@
                     },
                     {
                         data: 'value',
-                        render(data){
-                            return '$' + data;
+                        render(data) {
+                            return parseCurrency(data);
                         }
                     },
                     {
@@ -146,6 +159,13 @@
                 }
             })
         }
+
+        function callbackFilter(params = null) {
+            filters  = params;
+            return table.ajax.reload();
+        }
     </script>
+
+    @stack('stack-script')
 @endsection
 
