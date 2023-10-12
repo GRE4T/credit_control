@@ -38,11 +38,6 @@ class LoginController extends Controller
     }
 
     public function logout(Request $request){
-        SessionAudit::create([
-            'user_id' => $request->user()->id,
-            'type_session' => 'Logout',
-            'ip_address' => $request->ip()
-        ]);
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

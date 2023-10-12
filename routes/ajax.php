@@ -7,6 +7,8 @@ use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\PaymentMadeController;
 use App\Http\Controllers\Api\PaymentReceivedController;
+use App\Http\Controllers\Api\PeriodCutController;
+use App\Http\Controllers\Api\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +41,9 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/paymentsreceived', [PaymentReceivedController::class, 'index']);
     Route::delete('/paymentsreceived/{paymentreceived}', [PaymentReceivedController::class, 'destroy']);
+
+    Route::get('/period-cut', [PeriodCutController::class, 'index']);
+
+    Route::get('/users', [UserController::class, 'index']);
+    Route::delete('/users/{user}', [UserController::class, 'destroy']);
 });

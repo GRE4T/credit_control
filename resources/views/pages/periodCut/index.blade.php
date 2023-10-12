@@ -1,5 +1,4 @@
 @extends('layouts.master')
-
 @section('main-content')
     <div class="breadcrumb">
         <ul class="d-flex align-items-center">
@@ -14,9 +13,52 @@
             Informe general
         </div>
         <div class="card-body">
-            <x-payments-filter  callback="callbackFilter" />
+                <form id="filters">
+                    <div class="form-row">
+                        <div class="form-group col-12 col-md-4">
+                            <label for="start_date">Desde</label>
+                            <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Ingresar fecha">
+                        </div>
+
+                        <div class="form-group col-12 col-md-4">
+                            <label for="end_date">Hasta</label>
+                            <input type="date" class="form-control" id="end_date" name="end_date" placeholder="Ingresar fecha">
+                        </div>
+
+                        <div class="form-group col-12 col-md-4">
+                            <label for="agreement_id">Convenio</label>
+                            <select name="agreement_id" id="agreement_id" class="form-control">
+                                <option value="" selected>Seleccionar una opción</option>
+                                @foreach($agreements as $agreement)
+                                    <option value="{{ $agreement->id }}">{{ $agreement->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-12 col-md-4">
+                            <label for="headquarter_id">Sede </label>
+                            <select name="headquarter_id" id="headquarter_id" class="form-control">
+                                <option value="" selected>Seleccionar una opción</option>
+                                @foreach($headquarters as $headquarter)
+                                    <option value="{{ $headquarter->id }}">{{ $headquarter->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-12 col-md-4">
+                            <label for="percentage">Porcentaje <strong>(%)</strong></label>
+                            <input type="number" class="form-control" id="percentage"  placeholder="Ingresar porcentaje"
+                                   value="0" min="0" max="100" step=".1">
+                        </div>
+                    </div>
+                    <div class="form-row d-flex justify-content-end">
+                        <div class="form-group col-12 col-md-2">
+                            <button id='apply_filter' type="submit" class="btn btn-primary btn-block">Aplicar filtro</button>
+                        </div>
+                    </div>
+                </form>
             <div class="table-responsive-md">
-                <table id="table_payments" class="table table-borderless table-hover">
+                <table id="table_period_cut" class="table table-borderless table-hover">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -35,7 +77,6 @@
                     </tbody>
                 </table>
             </div>
-            </p>
         </div>
     </div>
 @endsection
@@ -57,13 +98,19 @@
 
         var table;
         var filters = [];
+        var percentage = 0;
 
         $(document).ready(() => {
-            table = $('#table_payments').DataTable({
+            table = $('#table_period_cut').DataTable({
                 dom: 'Bfrtlip',
                 buttons: [
-                    'excel'
+                    {
+                        extend: 'excel',
+                        text: 'Exportar Excel',
+                        filename: 'corte_periodo_' + getDateToString()
+                    }
                 ],
+                lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Todos"]],
                 responsive: true,
                 autoWidth: false,
                 processing: true,
@@ -72,52 +119,93 @@
                     url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json'
                 },
                 ajax: (data, callback, settings) => {
-                    $.get('{{ url('api/payments') }}', {
+                    $.get('{{ url('api/period-cut') }}', {
                         ...data,
                         filters: filters
                     }, function (response) {
-                        let totalLabel = parseCurrency(response.data.total);
-                        $('#total_value').text(totalLabel);
-                        callback(response.data.grid.original);
+                        callback(response);
                     });
                 },
-                columns: [{
-                    data: 'id',
-                    render(data, type, row, meta) {
-                        return meta.settings._iDisplayStart + meta.row + 1;
-                    }
-                },
+                columns: [
                     {
-                        data: 'created_at'
+                        data: 'id',
+                        render(data, type, row, meta) {
+                            return meta.settings._iDisplayStart + meta.row + 1;
+                        }
                     },
                     {
-                        data: 'agreement.name'
+                        data: 'headquarter'
                     },
                     {
-                        data: 'value',
-                        render(data){
+                        data: 'agreement'
+                    },
+                    {
+                        data: 'payments',
+                        render(data) {
                             return parseCurrency(data);
                         }
                     },
                     {
-                        data: 'headquarter.name'
+                        data: 'invoices',
+                        render(data) {
+                            return parseCurrency(data);
+                        }
                     },
                     {
-                        data: 'credit_pos_number'
+                        data: 'payments_made',
+                        render(data) {
+                            return parseCurrency(data);
+                        }
                     },
                     {
-                        data: 'credit_number'
+                        data: 'payments_received',
+                        render(data) {
+                            return parseCurrency(data);
+                        }
                     },
                     {
-                        data: 'receipt_number'
-                    }
+                        render(){
+                            return percentage + '%';
+                        }
+                    },
+                    {
+                        render(data, type, row){
+                            return parseCurrency((row.invoices * percentage ) / 100);
+                        }
+                    },
+                    {
+                        render(data, type, row) {
+                            let sum = [
+                                row.payments,
+                                row.invoices,
+                                row.payments_received
+                            ].reduce((a, b) => a - b, 0);
+
+                            return parseCurrency((sum + row.payments_made));
+                        }
+                    },
                 ]
             });
+
+            applyFilters();
         });
 
-        function callbackFilter(params = null) {
-            filters  = params;
-            return table.ajax.reload();
+        function applyFilters() {
+            $('#filters').on('submit', function (event) {
+                event.preventDefault();
+                let params =  {};
+
+                $(this).serializeArray().forEach(function (item) {
+                    if( item.value !== '' ){
+                        params[item.name] = item.value;
+                    }
+                });
+
+                filters = params;
+                percentage = $("#percentage").val();
+
+                return table.ajax.reload();
+            });
         }
     </script>
 

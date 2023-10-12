@@ -70,8 +70,13 @@
             table = $('#table_invoices').DataTable({
                 dom: 'Bfrtlip',
                 buttons: [
-                    'excel'
+                    {
+                        extend: 'excel',
+                        text: 'Exportar Excel',
+                        filename: 'facturas_' + getDateToString()
+                    }
                 ],
+                lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Todos"]],
                 responsive: true,
                 autoWidth: false,
                 processing: true,

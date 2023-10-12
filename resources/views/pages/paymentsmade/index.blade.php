@@ -64,8 +64,16 @@
             table = $('#table_payments_made').DataTable({
                 dom: 'Bfrtlip',
                 buttons: [
-                    'excel'
+                    {
+                        extend: 'excel',
+                        text: 'Exportar Excel',
+                        filename: 'pagos_realizados_' + getDateToString(),
+                        exportOptions : {
+                            columns: [0,1,2,3,4,5,6,7]
+                        }
+                    }
                 ],
+                lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Todos"]],
                 responsive: true,
                 autoWidth: false,
                 processing: true,

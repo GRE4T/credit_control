@@ -6,3 +6,10 @@ function parseCurrency(value) {
         currency: 'COP'
     }).format(value);
 }
+
+function getDateToString(date = null){
+    if(date === null){
+        date = new Date();
+    }
+    return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+}

@@ -13,6 +13,7 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PaymentMadeController;
 use App\Http\Controllers\PaymentReceivedController;
 use App\Http\Controllers\PeriodCutController;
+use App\Http\Controllers\UserController;
 
 
 
@@ -67,13 +68,15 @@ Route::middleware('auth')->group(function () {
         Route::resource('/paymentsreceived', PaymentReceivedController::class)->except('show');
 
         //Period Cut
-        Route::get('/period-cut', [PeriodCutController::class, 'index'])->name('periodCut.index');
+        Route::get('/period-cut', [PeriodCutController::class, 'index'])->name('periodCut');
 
+        //Users
+        Route::resource('/users', UserController::class)->except('show');
 
         //Route profile
         Route::view('/user/profile', 'others.user-profile')->name('user.profile');
-        // Route::put('/user/updateProfile', [UserController::class, 'updateProfile'])->name('user.update');
-        // Route::post('/user/updatePassword', [UserController::class, 'updatePassword'])->name('user.password');
+        Route::put('/user/updateProfile', [UserController::class, 'updateProfile'])->name('user.update');
+        Route::post('/user/updatePassword', [UserController::class, 'updatePassword'])->name('user.password');
 
     // ---------------------------------------------------------------------------------------------------------------------------------
 
