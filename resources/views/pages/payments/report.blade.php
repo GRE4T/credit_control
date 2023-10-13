@@ -35,8 +35,8 @@
                         <th scope="col">Valor</th>
                         <th scope="col">Sede</th>
                         <th scope="col">C. Pos</th>
-                        <th scope="col">#Credito</th>
-                        <th scope="col">#Recibido</th>
+                        <th scope="col">N. Credito</th>
+                        <th scope="col">N. Recibo</th>
                     </tr>
                     </thead>
                     <tbody>

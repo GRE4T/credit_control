@@ -19,6 +19,7 @@
             Pagos realizados
         </div>
         <div class="card-body">
+            <x-paymentsmade-filter  callback="callbackFilter" />
             <div class="table-responsive-md">
                 <table id="table_payments_made" class="table table-borderless table-hover">
                     <thead>
@@ -29,7 +30,7 @@
                             <th scope="col">Sede</th>
                             <th scope="col">Valor</th>
                             <th scope="col">Tipo de pago</th>
-                            <th scope="col"># Recibido</th>
+                            <th scope="col">N. Recibo</th>
                             <th scope="col">Detalle</th>
                             <th scope="col">Acción</th>
                     </tr>
@@ -59,6 +60,7 @@
         'use strict'
 
         var table;
+        var filters = [];
 
         $(document).ready(() => {
             table = $('#table_payments_made').DataTable({
@@ -81,7 +83,14 @@
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json'
                 },
-                ajax: "{{ url('api/paymentsmade') }}",
+                ajax: (data, callback, settings) => {
+                    $.get('{{ url("api/paymentsmade") }}', {
+                        ...data,
+                        filters: filters
+                    }, function (response) {
+                        callback(response.data.grid.original);
+                    });
+                },
                 columns: [{
                     data: 'id',
                     render(data, type, row, meta) {
@@ -163,6 +172,13 @@
                 }
             })
         }
+
+        function callbackFilter(params = null) {
+            filters  = params;
+            return table.ajax.reload();
+        }
     </script>
+
+    @stack('stack-script')
 @endsection
 

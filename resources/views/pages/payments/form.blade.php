@@ -38,7 +38,7 @@
     </div>
     <div class="form-row">
         <div class="form-group col-12 col-md-6">
-            <label for="credit_number">Numero de credito # <span class="text-danger">(*)</span></label>
+            <label for="credit_number">Numero de credito<span class="text-danger">(*)</span></label>
             <input type="number" class="form-control @error('credit_number') is-invalid @enderror"
                    name="credit_number" id="credit_number"
                    value="{{ old('credit_number') ? old('credit_number') : $payment->credit_number }}" required min="1" step="1" placeholder="Ingresar numero de credito">
@@ -49,7 +49,7 @@
             @enderror
         </div>
         <div class="form-group col-12 col-md-6">
-            <label for="credit_pos_number">Numero de credito pos # <span class="text-danger">(*)</span></label>
+            <label for="credit_pos_number">Numero de credito pos<span class="text-danger">(*)</span></label>
             <input type="number" class="form-control @error('credit_pos_number') is-invalid @enderror"
                    name="credit_pos_number" id="credit_pos_number"
                    value="{{ old('credit_pos_number') ? old('credit_pos_number') : $payment->credit_pos_number }}" required min="0" step="1" placeholder="Ingresar numero de credito pos">

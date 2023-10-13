@@ -32,12 +32,6 @@
                 </select>
             </div>
             <div class="form-group col-12 col-md-4">
-                <label for="credit_number">Numero de credito</label>
-                <input type="number" class="form-control"
-                       name="credit_number" id="credit_number"
-                       min="1" step="1" placeholder="Ingresar numero de credito">
-            </div>
-            <div class="form-group col-12 col-md-4">
                 <label for="receipt_number">Numero de recibo</label>
                 <input type="number" class="form-control" name="receipt_number" id="receipt_number" min="1" step="1"
                        placeholder="Ingresar numero de recibo">

@@ -19,6 +19,11 @@ class Payment extends Model
         'value'
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
     public function agreement(){
         return $this->belongsTo(Agreement::class);
     }

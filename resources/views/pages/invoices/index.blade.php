@@ -11,7 +11,7 @@
     </div>
     <div class="row mb-2">
         <div class="col text-right">
-            <a class="btn btn-success" href="{{ route('invoices.create')}}">Añadir nuevo</a>
+            <a class="btn btn-success" href="{{ route('invoices.create')}}">Añadir nueva factura</a>
         </div>
     </div>
     <div class="card mb-4">
@@ -130,12 +130,14 @@
                         render(data, type, row) {
                             if (row.state.key === '{{ config('agreements.state_1') }}') {
                                 return `
-                                    <button class="bg-success mr-2 btn text-white" onclick="changeStatus(${data}, '{{ config('agreements.state_2') }}')">
+                                    <div class="row px-2">
+                                    <button class="col-12 bg-success btn text-white" onclick="changeStatus(${data}, '{{ config('agreements.state_2') }}')">
                                         Pagar
                                     </button>
-                                    <button class="bg-danger mr-2 btn text-white" onclick="changeStatus(${data}, '{{ config('agreements.state_3') }}')">
+                                    <button class="col-12 mt-2 bg-danger btn text-white" onclick="changeStatus(${data}, '{{ config('agreements.state_3') }}')">
                                         Anular
                                     </button>
+                                    </div>
                                 `;
                             }
                             return null;
