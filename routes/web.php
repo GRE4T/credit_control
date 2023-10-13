@@ -2,8 +2,6 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\PasswordController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AgreementController;
 use App\Http\Controllers\HeadquarterController;
@@ -71,7 +69,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/period-cut', [PeriodCutController::class, 'index'])->name('periodCut');
 
         //Users
-        Route::resource('/users', UserController::class)->except('show');
+        Route::resource('/users', UserController::class)->except('show')->middleware('admin');
 
         //Route profile
         Route::view('/user/profile', 'others.user-profile')->name('user.profile');
@@ -220,18 +218,12 @@ Route::middleware('auth')->group(function () {
     //Code Status
     Route::view('notAuthorized', 'others.notAuthorized')->name('notAuthorized');
 
-    //Verify Email
-    Route::get('/email/verify', [VerificationController::class, 'verificationEmail'])->name('verification.notice');
-    Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verificationVerify'])->middleware('signed')->name('verification.verify');
-    Route::post('/email/verification-notification', [VerificationController::class, 'verificationSend'])->middleware('throttle:6,1')->name('verification.send');
 });
 
 // Auth::routes();
 Route::get('/login',  [LoginController::class, 'index'])->name('login');
 Route::post('/login',  [LoginController::class, 'authenticate'])->name('login');
 Route::post('/logout',  [LoginController::class, 'logout'])->name('logout');
-Route::get('/register',  [RegisterController::class, 'index'])->name('register');
-Route::post('/register',  [RegisterController::class, 'register'])->name('register');
 
 
 //Forgot Password

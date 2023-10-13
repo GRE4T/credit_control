@@ -21,7 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'is_admin', 'active'
     ];
 
     /**
@@ -42,6 +42,10 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         'email_verified_at' => 'datetime',
     ];
 
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
 
 
     public function sendPasswordResetNotification($token)

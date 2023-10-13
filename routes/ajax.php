@@ -46,4 +46,5 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/users', [UserController::class, 'index']);
     Route::delete('/users/{user}', [UserController::class, 'destroy']);
+    Route::put('/users/{user}/change-state', [UserController::class, 'changeStatus']);
 });

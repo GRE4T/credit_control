@@ -37,6 +37,7 @@
                         <th scope="col">C. Pos</th>
                         <th scope="col">N. Credito</th>
                         <th scope="col">N. Recibo</th>
+                        <th scope="col">Responsable</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -123,6 +124,9 @@
                     },
                     {
                         data: 'receipt_number'
+                    },
+                    {
+                        data: 'user.name'
                     }
                 ]
             });

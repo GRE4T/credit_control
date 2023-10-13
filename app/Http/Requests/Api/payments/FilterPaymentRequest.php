@@ -31,7 +31,7 @@ class FilterPaymentRequest extends FormRequest
             'filters.headquarter_id' => 'nullable|exists:headquarters,id',
             'filters.start_date' => 'nullable|date',
             'filters.end_date' => 'nullable|date',
-            'filters.credit_number' => 'nullable|numeric',
+            'filters.credit_number' => 'nullable|string',
             'filters.receipt_number' => 'nullable|numeric',
         ];
     }

@@ -24,6 +24,6 @@ class InsertStatesToInvoiceStatesTable extends Migration
      */
     public function down()
     {
-        DB::table('invoice_states')->truncate();
+        //DB::table('invoice_states')->truncate();
     }
 }

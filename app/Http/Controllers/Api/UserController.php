@@ -13,9 +13,27 @@ class UserController extends Controller
         return DataTables::of(User::query())->make(true);
     }
 
+    public function changeStatus(User $user)
+    {
+        $user->active = !$user->active;
+        $user->update();
+
+        return response()->json([
+            'code' => 200,
+            'status' => 'success',
+            'message' => 'Successfully executed',
+            'data' => $user
+        ], 200);
+    }
+
     public function destroy(User $user)
     {
-        $user->delete();
+        if(!$user->has('payments')){
+            $user->delete();
+        } else {
+            $user->active = false;
+            $user->update();
+        }
 
         return response()->json([
             'code' => 200,

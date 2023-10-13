@@ -27,6 +27,7 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Correo Electrónico</th>
                         <th scope="col">Nombre de usuario</th>
+                        <th scope="col">Estado</th>
                         <th scope="col">Acción</th>
                     </tr>
                     </thead>
@@ -55,8 +56,10 @@
     <script type="text/javascript">
         'use strict'
 
+        var table;
+
         $(document).ready(() => {
-            $('#table_users').DataTable({
+            table = $('#table_users').DataTable({
                 dom: 'Bfrtlip',
                 buttons: [],
                 responsive: true,
@@ -84,9 +87,18 @@
                         data: 'username'
                     },
                     {
+                        data: 'active',
+                        render(data) {
+                            return data ? 'Activado' : 'Desactivado';
+                        }
+                    },
+                    {
                         data: 'id',
                         render(data, type, row) {
                             return `
+                                <a href="javascript:void(0)" class="text-primary mr-2" onclick="changeStatus(${data})">
+                                    <i class="nav-icon ${ row.active ? 'i-Remove-User' : 'i-Add-User'} font-weight-bold"></i>
+                                </a>
                                 <a href="{{ url('users') }}/${data}/edit" class="text-success mr-2">
                                     <i class="nav-icon i-Pen-2 font-weight-bold"></i>
                                 </a>
@@ -126,6 +138,40 @@
                                 Swal.fire(
                                     'Cancelado',
                                     'Este registro no puede ser eliminado :(',
+                                    'error'
+                                )
+                            }
+                        })
+                }
+            })
+        }
+
+        function changeStatus(id) {
+            Swal.fire({
+                title: '¿Estas seguro de actualizar el estado?',
+                text: "¡No podrás revertir esto!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Actualizar!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.put(`{{ url('api/users') }}/${id}/change-state`)
+                        .then((res) => {
+                            Swal.fire(
+                                '¡Actualización de estado!',
+                                'Registro borrado exitosamente ',
+                                'success'
+                            );
+                            table.ajax.reload();
+                        })
+                        .catch((error) => {
+                            if (error) {
+                                Swal.fire(
+                                    'Cancelado',
+                                    'No fue posible actualizar el estado  :(',
                                     'error'
                                 )
                             }

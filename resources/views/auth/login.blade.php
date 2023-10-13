@@ -59,9 +59,6 @@
                     <div class="mt-3 text-center">
                         <a href="{{ route('password.forgot') }}" class="text-muted"><u>¿Olvidaste tu contraseña?</u></a>
                     </div>
-                    <div class="mt-3 text-center">
-                        <a href="{{ route('register') }}" class="text-muted d-block"><u>Registrarme</u></a>
-                    </div>
                 </div>
             </div>
         </div>

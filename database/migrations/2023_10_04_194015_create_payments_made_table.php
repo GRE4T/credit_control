@@ -19,7 +19,7 @@ class CreatePaymentsMadeTable extends Migration
             $table->foreignId('headquarter_id')->constrained('headquarters');
             $table->double('value');
             $table->string('type_payment');
-            $table->string('receipt_number');
+            $table->string('receipt_number', 20)->unique();
             $table->text('detail')->nullable();
             $table->timestamps();
         });

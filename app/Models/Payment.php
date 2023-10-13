@@ -13,6 +13,7 @@ class Payment extends Model
     protected  $fillable = [
         'agreement_id',
         'headquarter_id',
+        'user_id',
         'credit_number',
         'credit_pos_number',
         'receipt_number',
@@ -30,5 +31,9 @@ class Payment extends Model
 
     public function headquarter(){
         return $this->belongsTo(Headquarter::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }

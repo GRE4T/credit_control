@@ -26,13 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        VerifyEmail::$toMailCallback = function ($notifiable, $url) {
-            return (new MailMessage)
-                ->subject('Verificación de correo electrónico')
-                ->view('emails.verifyEmail', [
-                    'url' => $url,
-                    'user' => $notifiable
-                ]);
-        };
+        //
     }
 }

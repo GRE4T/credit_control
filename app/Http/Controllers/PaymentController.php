@@ -45,6 +45,7 @@ class PaymentController extends Controller
         $payment = new Payment();
         $payment->agreement_id = $request->agreement_id;
         $payment->headquarter_id = $request->headquarter_id;
+        $payment->user_id = $request->user()->id;
         $payment->credit_number = trim($request->input('credit_number'));
         $payment->credit_pos_number = trim($request->input('credit_pos_number'));
         $payment->receipt_number = trim($request->input('receipt_number'));
@@ -91,6 +92,7 @@ class PaymentController extends Controller
     {
         $payment->agreement_id = $request->agreement_id;
         $payment->headquarter_id = $request->headquarter_id;
+        $payment->user_id = $request->user()->id;
         $payment->credit_number = trim($request->input('credit_number'));
         $payment->credit_pos_number = trim($request->input('credit_pos_number'));
         $payment->receipt_number = trim($request->input('receipt_number'));

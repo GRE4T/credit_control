@@ -71,13 +71,15 @@
                 </a>
                 <div class="triangle"></div>
             </li>
-            <li class="nav-item {{ request()->is('clients') ? 'active' : '' }}" >
-                <a class="nav-item-hold" href="{{route('users.index')}}">
-                    <img src="{{ asset('assets/images/icons/user.png') }}" alt="icon-court" class="w-40">
-                    <span class="nav-text">Usuarios</span>
-                </a>
-                <div class="triangle"></div>
-            </li>
+            @if(auth()->user()->is_admin)
+                <li class="nav-item {{ request()->is('clients') ? 'active' : '' }}" >
+                    <a class="nav-item-hold" href="{{route('users.index')}}">
+                        <img src="{{ asset('assets/images/icons/user.png') }}" alt="icon-court" class="w-40">
+                        <span class="nav-text">Usuarios</span>
+                    </a>
+                    <div class="triangle"></div>
+                </li>
+            @endif
         </ul>
     </div>
     <div class="sidebar-overlay"></div>

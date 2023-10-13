@@ -32,6 +32,7 @@
                         <th scope="col">C. Pos</th>
                         <th scope="col">N. Credito</th>
                         <th scope="col">N. Recibo</th>
+                        <th scope="col">Responsable</th>
                         <th scope="col">Acción</th>
                     </tr>
                     </thead>
@@ -71,7 +72,7 @@
                         text: 'Exportar Excel',
                         filename: 'recaudos_' + getDateToString(),
                         exportOptions : {
-                            columns: [0,1,2,3,4,5,6,7]
+                            columns: [0,1,2,3,4,5,6,7, 8]
                         }
                     }
                 ],
@@ -120,6 +121,9 @@
                     },
                     {
                         data: 'receipt_number'
+                    },
+                    {
+                        data: 'user.name'
                     },
                     {
                         data: 'id',

@@ -15,5 +15,8 @@
         </div>
     </form>
 @endsection
+@section('bottom-js')
+    @stack('stack-script')
+@endsection
 
 

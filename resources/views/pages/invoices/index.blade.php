@@ -140,7 +140,13 @@
                                     </div>
                                 `;
                             }
-                            return null;
+                            return `
+                                    <div class="row px-2">
+                                    <button class="col-12 bg-success btn text-white" onclick="changeStatus(${data}, '{{ config('agreements.state_1') }}')">
+                                        Pendiente
+                                    </button>
+                                    </div>
+                                `;
                         }
                     },
                     {

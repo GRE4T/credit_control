@@ -17,9 +17,10 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->foreignId('agreement_id')->constrained('agreements');
             $table->foreignId('headquarter_id')->constrained('headquarters');
+            $table->foreignId('user_id')->constrained('users');
             $table->string('credit_number');
             $table->string('credit_pos_number');
-            $table->string('receipt_number', 20);
+            $table->string('receipt_number', 20)->unique();
             $table->double('value');
             $table->timestamps();
         });
