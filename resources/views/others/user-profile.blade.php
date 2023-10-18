@@ -124,42 +124,44 @@
             </div>
             <hr>
         </div>
-        <div class="px-5" id="setting-site">
-            <h4>Configuración del sitio</h4>
-            <hr>
-            <div class="row">
-                <div class="col px-5">
-                    <form action="{{ route('configurations.store')}}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="text-center">
-                            <h4 class="mb-4">Actualizar información</h4>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label class="text-primary mb-1" for="logo"><i class="i-File-Text--Image text-16 mr-1"></i>Logo</label>
-                            <div class="p-0 border">
-                                <div style="height: 230px" class="d-flex justify-content-center my-2">
-                                    <img id="image" class="border img-fluid"  src="{{ asset($configuration->logo) }}" alt="logo" />
-                                </div>
-                                <label class="btn border btn-block mb-0 text-30 text-primary">
-                                    <i class="i-Pen-2 font-weight-bold"></i>
-                                    <input id="logo" name="logo" data-info="image" type="file"  onchange="readImage(event)" >
-                                </label>
+        @if($user->is_admin)
+            <div class="px-5" id="setting-site">
+                <h4>Configuración del sitio</h4>
+                <hr>
+                <div class="row">
+                    <div class="col px-5">
+                        <form action="{{ route('configurations.store')}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="text-center">
+                                <h4 class="mb-4">Actualizar información</h4>
                             </div>
-                            @error('logo')
-                            <span class="invalid-feedback d-block" role="alert">
+                            <div class="form-group mb-4">
+                                <label class="text-primary mb-1" for="logo"><i class="i-File-Text--Image text-16 mr-1"></i>Logo</label>
+                                <div class="p-0 border">
+                                    <div style="height: 230px" class="d-flex justify-content-center my-2">
+                                        <img id="image" class="border img-fluid"  src="{{ asset($configuration->logo) }}" alt="logo" />
+                                    </div>
+                                    <label class="btn border btn-block mb-0 text-30 text-primary">
+                                        <i class="i-Pen-2 font-weight-bold"></i>
+                                        <input id="logo" name="logo" data-info="image" type="file"  onchange="readImage(event)" >
+                                    </label>
+                                </div>
+                                @error('logo')
+                                <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
-                            @enderror
-                        </div>
-                        <div class="text-right">
-                            <button type="submit" class="btn  btn-primary m-1">Guardar</button>
-                            <button type="button" onclick='' class="btn btn-outline-secondary m-1">Cancelar</button>
-                        </div>
-                    </form>
+                                @enderror
+                            </div>
+                            <div class="text-right">
+                                <button type="submit" class="btn  btn-primary m-1">Guardar</button>
+                                <button type="button" onclick='' class="btn btn-outline-secondary m-1">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+                <hr>
             </div>
-            <hr>
-        </div>
+        @endif
     </div>
 </div>
 

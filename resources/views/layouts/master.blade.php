@@ -27,9 +27,6 @@
 </head>
 
 <body class="text-left">
-    @php
-    $layout = session('layout');
-    @endphp
 
     <!-- Pre Loader Strat  -->
     <div class='loadscreen' id="preloader">
@@ -41,73 +38,9 @@
     </div>
     <!-- Pre Loader end  -->
 
-
-    <!-- ============ Compact Layout start ============= -->
-    @if ($layout == 'compact')
-
-    @include('layouts.compact-vertical-sidebar.master')
-
-
-    <!-- ============ Compact Layout End ============= -->
-
-
-
-
-
-    <!-- ============ Horizontal Layout start ============= -->
-
-    @elseif($layout=="horizontal")
-
-
-    @include('layouts.horizontal-bar.master')
-
-
-    <!-- ============ Horizontal Layout End ============= -->
-
-
-
-
-    <!-- ============ Vetical SIdebar Layout start ============= -->
-    @elseif($layout=="vertical")
-
-    @include('layouts.vertical-sidebar.master')
-
-    <!-- ============ Vetical SIdebar Layout End ============= -->
-
-
-
-
-    <!-- ============ Large SIdebar Layout start ============= -->
-    @elseif($layout=="normal")
-
-
-    @include('layouts.large-vertical-sidebar.master')
-
-
-    <!-- ============ Large Sidebar Layout End ============= -->
-
-
-
-
-
-    @else
     <!-- ============Deafult  Large SIdebar Layout start ============= -->
-
     @include('layouts.large-vertical-sidebar.master')
-
-
     <!-- ============ Large Sidebar Layout End ============= -->
-
-
-
-    @endif
-    <!-- ============ Search UI Start ============= -->
-    {{-- @include('layouts.search') --}}
-    <!-- ============ Search UI End ============= -->
-
-    <!-- ============ Customizer UI Start ============= -->
-    @include('layouts.common.customizer')
-    <!-- ============ Customizer UI Start ============= -->
 
 
     @yield('page-js')
@@ -116,48 +49,11 @@
     <script src="{{ asset('assets/js/common-bundle-script.js') }}"></script>
     {{-- page specific javascript --}}
 
-    {{-- theme javascript --}}
-    {{-- <script src="{{ mix('assets/js/es5/script.js') }}"></script>
-    --}}
     <script src="{{ asset('assets/js/script.js') }}"></script>
-
-
-    @if ($layout == 'compact')
-    <script src="{{ asset('assets/js/sidebar.compact.script.js') }}"></script>
-
-
-    @elseif($layout=='normal')
     <script src="{{ asset('assets/js/sidebar.large.script.js') }}"></script>
-
-
-    @elseif($layout=='horizontal')
-    <script src="{{ asset('assets/js/sidebar-horizontal.script.js') }}"></script>
-    @elseif($layout=='vertical')
-
-
-
-    <script src="{{ asset('assets/js/tooltip.script.js') }}"></script>
-    <script src="{{ asset('assets/js/es5/script_2.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/feather.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/metisMenu.min.js') }}"></script>
-    <script src="{{ asset('assets/js/layout-sidebar-vertical.js') }}"></script>
-
-
-    @else
-    <script src="{{ asset('assets/js/sidebar.large.script.js') }}"></script>
-
-    @endif
-
-
-
     <script src="{{ asset('assets/js/customizer.script.js') }}"></script>
     <script src="{{asset('assets/js/vendor/echarts.min.js')}}"></script>
     <script src="{{asset('assets/js/es5/echart.options.min.js')}}"></script>
-    {{--<script src="{{asset('assets/js/es5/dashboard.script.js')}}"></script>--}}
-
-    {{-- laravel js --}}
-    {{-- <script src="{{ mix('assets/js/laravel/app.js') }}"></script>
-    --}}
 
     @yield('bottom-js')
 </body>
