@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\paymentsreceived\StorePaymentReceivedRequest;
-use App\Http\Requests\paymentsreceived\UpdatePaymentReceivedRequest;
+use App\Http\Requests\PaymentsReceived\StorePaymentReceivedRequest;
+use App\Http\Requests\PaymentsReceived\UpdatePaymentReceivedRequest;
 use App\Models\Agreement;
 use App\Models\Headquarter;
 use App\Models\PaymentReceived;
@@ -37,7 +37,7 @@ class PaymentReceivedController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\paymentsreceived\StorePaymentReceivedRequest  $request
+     * @param  \App\Http\Requests\PaymentsReceived\StorePaymentReceivedRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StorePaymentReceivedRequest $request)
@@ -83,7 +83,7 @@ class PaymentReceivedController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\paymentsreceived\UpdatePaymentReceivedRequest  $request
+     * @param  \App\Http\Requests\PaymentsReceived\UpdatePaymentReceivedRequest  $request
      * @param  \App\Models\PaymentReceived  $paymentreceived
      * @return \Illuminate\Http\Response
      */

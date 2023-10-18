@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\paymentsmade\StorePaymentMadeRequest;
-use App\Http\Requests\paymentsmade\UpdatePaymentMadeRequest;
+use App\Http\Requests\PaymentsMade\StorePaymentMadeRequest;
+use App\Http\Requests\PaymentsMade\UpdatePaymentMadeRequest;
 use App\Models\Agreement;
 use App\Models\Headquarter;
 use App\Models\PaymentMade;
@@ -37,7 +37,7 @@ class PaymentMadeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\paymentsmade\StorePaymentMadeRequest  $request
+     * @param  \App\Http\Requests\PaymentsMade\StorePaymentMadeRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StorePaymentMadeRequest $request)
@@ -84,7 +84,7 @@ class PaymentMadeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\paymentsmade\UpdatePaymentMadeRequest  $request
+     * @param  \App\Http\Requests\PaymentsMade\UpdatePaymentMadeRequest  $request
      * @param  \App\Models\PaymentMade  $paymentmade
      * @return \Illuminate\Http\Response
      */

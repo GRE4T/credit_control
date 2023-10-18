@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\invoices\StoreInvoiceRequest;
-use App\Http\Requests\invoices\UpdateInvoiceRequest;
+use App\Http\Requests\Invoices\StoreInvoiceRequest;
+use App\Http\Requests\Invoices\UpdateInvoiceRequest;
 use App\Models\Agreement;
 use App\Models\Headquarter;
 use App\Models\Invoice;
@@ -38,7 +38,7 @@ class InvoiceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\invoices\StoreInvoiceRequest  $request
+     * @param  \App\Http\Requests\Invoices\StoreInvoiceRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreInvoiceRequest $request)
@@ -88,7 +88,7 @@ class InvoiceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\invoices\UpdateInvoiceRequest  $request
+     * @param  \App\Http\Requests\Invoices\UpdateInvoiceRequest  $request
      * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */

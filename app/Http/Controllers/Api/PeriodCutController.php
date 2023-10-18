@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\periodCut\FilterCutRequest;
+use App\Http\Requests\Api\PeriodCut\FilterCutRequest;
 use App\Models\Agreement;
 use App\Models\Headquarter;
 use App\Models\Invoice;

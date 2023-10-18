@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\agreements\StoreAgreementRequest;
-use App\Http\Requests\agreements\UpdateAgreementRequest;
+use App\Http\Requests\Agreements\StoreAgreementRequest;
+use App\Http\Requests\Agreements\UpdateAgreementRequest;
 use App\Models\Agreement;
 
 class AgreementController extends Controller
@@ -33,7 +33,7 @@ class AgreementController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\agreements\StoreAgreementRequest  $request
+     * @param  \App\Http\Requests\Agreements\StoreAgreementRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreAgreementRequest $request)
@@ -73,7 +73,7 @@ class AgreementController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\agreements\UpdateAgreementRequest  $request
+     * @param  \App\Http\Requests\Agreements\UpdateAgreementRequest  $request
      * @param  \App\Models\Agreement  $agreement
      * @return \Illuminate\Http\Response
      */

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\users\StoreUserRequest;
-use App\Http\Requests\users\UpdatePasswordUserRequest;
-use App\Http\Requests\users\UpdateUserRequest;
+use App\Http\Requests\Users\StoreUserRequest;
+use App\Http\Requests\Users\UpdatePasswordUserRequest;
+use App\Http\Requests\Users\UpdateUserRequest;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;

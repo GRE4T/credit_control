@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\headquarters\StoreHeadquarterRequest;
-use App\Http\Requests\headquarters\UpdateHeadquarterRequest;
+use App\Http\Requests\Headquarters\StoreHeadquarterRequest;
+use App\Http\Requests\Headquarters\UpdateHeadquarterRequest;
 use App\Models\Headquarter;
 
 class HeadquarterController extends Controller
@@ -33,7 +33,7 @@ class HeadquarterController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\headquarters\StoreHeadquarterRequest  $request
+     * @param  \App\Http\Requests\Headquarters\StoreHeadquarterRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreHeadquarterRequest $request)
@@ -73,7 +73,7 @@ class HeadquarterController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\headquarters\UpdateHeadquarterRequest  $request
+     * @param  \App\Http\Requests\Headquarters\UpdateHeadquarterRequest  $request
      * @param  \App\Models\Headquarter  $headquarter
      * @return \Illuminate\Http\Response
      */

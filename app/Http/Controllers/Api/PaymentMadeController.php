@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\PaymentMade;
-use App\Http\Requests\Api\paymentsmade\FilterPaymentMadeRequest;
+use App\Http\Requests\Api\PaymentsMade\FilterPaymentMadeRequest;
 use Yajra\DataTables\DataTables;
 
 class PaymentMadeController extends Controller

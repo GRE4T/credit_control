@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\payments\FilterPaymentRequest;
+use App\Http\Requests\Api\Payments\FilterPaymentRequest;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;

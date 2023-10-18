@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\PaymentReceived;
-use App\Http\Requests\Api\paymentsreceived\FilterPaymentReceivedRequest;
+use App\Http\Requests\Api\PaymentsReceived\FilterPaymentReceivedRequest;
 use Yajra\DataTables\DataTables;
 
 class PaymentReceivedController extends Controller

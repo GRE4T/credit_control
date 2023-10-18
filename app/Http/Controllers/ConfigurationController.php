@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\configurations\StoreConfigurationRequest;
+use App\Http\Requests\Configurations\StoreConfigurationRequest;
 use App\Models\Configuration;
 
 class ConfigurationController extends Controller
@@ -12,7 +12,7 @@ class ConfigurationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\configurations\StoreConfigurationRequest  $request
+     * @param  \App\Http\Requests\Configurations\StoreConfigurationRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreConfigurationRequest $request)

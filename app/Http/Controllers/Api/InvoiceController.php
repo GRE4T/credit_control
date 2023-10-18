@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\invoices\ChangeStateRequest;
-use App\Http\Requests\Api\invoices\FilterInvoiceRequest;
+use App\Http\Requests\Api\Invoices\ChangeStateRequest;
+use App\Http\Requests\Api\Invoices\FilterInvoiceRequest;
 use App\Models\Invoice;
 use App\Models\InvoiceState;
 use Illuminate\Http\Request;
