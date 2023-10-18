@@ -35,4 +35,9 @@ class Invoice extends Model
     {
         return $this->belongsTo(InvoiceState::class, 'invoice_state_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

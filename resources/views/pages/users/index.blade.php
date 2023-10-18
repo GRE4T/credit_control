@@ -27,6 +27,7 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Correo Electrónico</th>
                         <th scope="col">Nombre de usuario</th>
+                        <th scope="col">Rol</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Acción</th>
                     </tr>
@@ -85,6 +86,12 @@
                     },
                     {
                         data: 'username'
+                    },
+                    {
+                        data: 'is_admin',
+                        render(data) {
+                            return data ? 'Administrador' : 'Estandar';
+                        }
                     },
                     {
                         data: 'active',

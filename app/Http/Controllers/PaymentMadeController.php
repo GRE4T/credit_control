@@ -45,6 +45,7 @@ class PaymentMadeController extends Controller
         $paymentmade = new PaymentMade();
         $paymentmade->agreement_id = $request->agreement_id;
         $paymentmade->headquarter_id = $request->headquarter_id;
+        $paymentmade->user_id = $request->user()->id;
         $paymentmade->value = $request->value;
         $paymentmade->type_payment = trim($request->input('type_payment'));
         $paymentmade->receipt_number = trim($request->input('receipt_number'));
@@ -92,9 +93,15 @@ class PaymentMadeController extends Controller
 
         $paymentmade->agreement_id = $request->agreement_id;
         $paymentmade->headquarter_id = $request->headquarter_id;
+        $paymentmade->user_id = $request->user()->id;
         $paymentmade->type_payment = trim($request->input('type_payment'));
         $paymentmade->receipt_number = trim($request->input('receipt_number'));
         $paymentmade->detail = trim($request->detail);
+
+        if($request->filled('value')) {
+            $paymentmade->value = $request->value;
+        }
+
         $paymentmade->update();
 
         return redirect()->route('paymentsmade.index');

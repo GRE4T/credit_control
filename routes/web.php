@@ -12,6 +12,7 @@ use App\Http\Controllers\PaymentMadeController;
 use App\Http\Controllers\PaymentReceivedController;
 use App\Http\Controllers\PeriodCutController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ConfigurationController;
 
 
 
@@ -72,9 +73,12 @@ Route::middleware('auth')->group(function () {
         Route::resource('/users', UserController::class)->except('show')->middleware('admin');
 
         //Route profile
-        Route::view('/user/profile', 'others.user-profile')->name('user.profile');
-        Route::put('/user/updateProfile', [UserController::class, 'updateProfile'])->name('user.update');
+        Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile');
+        Route::put('/user/update-profile', [UserController::class, 'updateProfile'])->name('user.updateProfile');
         Route::post('/user/updatePassword', [UserController::class, 'updatePassword'])->name('user.password');
+
+        //Configuration
+        Route::post('/configurations', [ConfigurationController::class, 'store'])->name('configurations.store');
 
     // ---------------------------------------------------------------------------------------------------------------------------------
 

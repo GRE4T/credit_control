@@ -38,6 +38,7 @@
                         <th scope="col">Sede</th>
                         <th scope="col">Detalle</th>
                         <th scope="col">Estado</th>
+                        <th scope="col">Responsable</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -127,6 +128,9 @@
                     },
                     {
                         data: 'state.name'
+                    },
+                    {
+                        data: 'user.name'
                     }
                 ],
             });

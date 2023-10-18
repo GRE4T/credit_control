@@ -34,6 +34,7 @@
                         <th scope="col">Detalle</th>
                         <th scope="col">Afectación</th>
                         <th scope="col">Estado</th>
+                        <th scope="col">Responsable</th>
                         <th scope="col">Acción</th>
                     </tr>
                     </thead>
@@ -74,7 +75,7 @@
                         text: 'Exportar Excel',
                         filename: 'facturas_' + getDateToString(),
                         exportOptions : {
-                            columns: [0,1,2,3,4,5,6,7,9]
+                            columns: [0,1,2,3,4,5,6,7,9,10]
                         }
                     }
                 ],
@@ -151,6 +152,9 @@
                     },
                     {
                         data: 'state.name'
+                    },
+                    {
+                        data: 'user.name'
                     },
                     {
                         data: 'id',

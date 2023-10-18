@@ -17,6 +17,7 @@ class CreateInvoicesTable extends Migration
             $table->id();
             $table->foreignId('agreement_id')->constrained('agreements');
             $table->foreignId('headquarter_id')->constrained('headquarters');
+            $table->foreignId('user_id')->constrained('users');
             $table->string('invoice_pos_number')->unique();
             $table->string('invoice_agreement')->unique();
             $table->double('value');

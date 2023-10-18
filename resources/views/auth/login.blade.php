@@ -7,10 +7,9 @@
             <div class="col-md-12">
                 <div class="p-4">
                     <div class="auth-logo text-center mb-4">
-                        <img src="{{asset('assets/images/logo_random.png')}}" alt="">
+                        <img src="{{ asset($configuration->logo)  }}" alt="" class="border border-dark rounded-circle">
                     </div>
-                    <h1 class="mb-3 p-2 text-18 bg-primary text-white rounded rounded-pill text-center">
-                        Nombre Web Site</h1>
+                    <h1 class="mb-3 p-2 text-18 bg-primary text-white rounded rounded-pill text-center">Convenios</h1>
                     @if (session('register-success'))
                     <div class="alert alert-card alert-success" role="alert">
                         <strong class="text-capitalize">Mensaje: </strong> {{ session('register-success') }}
@@ -22,9 +21,9 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group">
-                            <label for="email">Correo electronico</label>
-                            <input id="email" type="email" class="form-control form-control-rounded @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                            @error('email')
+                            <label for="username">Nombre de usuario</label>
+                            <input id="username" type="text" class="form-control form-control-rounded @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                            @error('username')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -55,10 +54,6 @@
 
                     </form>
 
-                    <p class="mt-3 mb-2 text-center load"> -- O -- </p>
-                    <div class="mt-3 text-center">
-                        <a href="{{ route('password.forgot') }}" class="text-muted"><u>¿Olvidaste tu contraseña?</u></a>
-                    </div>
                 </div>
             </div>
         </div>

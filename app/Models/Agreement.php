@@ -17,4 +17,18 @@ class Agreement extends Model
         'created_at' => 'datetime:Y-m-d H:i:s',
         'updated_at' => 'datetime:Y-m-d H:i:s',
     ];
+
+    public function payments(){
+        return $this->hasMany(Payment::class);
+    }
+
+    public function invoices(){
+        return $this->hasMany(Invoice::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

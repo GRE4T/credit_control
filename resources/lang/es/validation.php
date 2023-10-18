@@ -171,5 +171,23 @@ return [
         'minimum'                => 'mínimo',
         'maximum'                => 'máximo',
         'old_password' => 'contraseña actual',
+        'agreement_id' => 'convenio',
+        'headquarter_id' => 'sede',
+        'invoice_pos_number' => 'número pos de factura',
+        'invoice_agreement' => 'número de factura - convenio',
+        'value' => 'valor',
+        'detail' => 'detalle',
+        'credit_number' => 'número de crédito',
+        'credit_pos_number' => 'número pos de crédito',
+        'receipt_number' => 'número de recibo',
+        'type_payment' => 'tipo de pago',
+        'is_admin' => 'administrador',
+        'invoice_state_id' => 'estado de factura',
+        'invoice_state_key' => 'estado de factura',
+        'end_date' => 'fecha de fin',
+        'start_date' => 'fecha de inicio',
+        'percentage' => 'porcentaje',
+        'filters' => 'filtros'
+
     ],
 ];

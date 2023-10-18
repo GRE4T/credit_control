@@ -48,6 +48,10 @@ class UserController extends Controller
         $user->username = $request->username;
         $user->password = Hash::make($request->password);
         $user->email_verified_at = Carbon::now();
+
+        if($request->filled('is_admin'))
+            $user->is_admin = $request->is_admin;
+
         $user->save();
 
         return redirect('/users');
@@ -91,6 +95,10 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->username = $request->username;
 
+        if($request->filled('is_admin'))
+            $user->is_admin = $request->is_admin;
+        else
+            $user->is_admin = false;
 
         if (isset($request->password))
             $user->password = Hash::make($request->password);
@@ -132,5 +140,12 @@ class UserController extends Controller
         $user->update();
 
         return redirect('/user/profile');
+    }
+
+    public function profile()
+    {
+        return view('others.user-profile', [
+            'user' => auth()->user()
+        ]);
     }
 }

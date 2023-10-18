@@ -17,6 +17,7 @@ class CreatePaymentsReceivedTable extends Migration
             $table->id();
             $table->foreignId('agreement_id')->constrained('agreements');
             $table->foreignId('headquarter_id')->constrained('headquarters');
+            $table->foreignId('user_id')->constrained('users');
             $table->double('value');
             $table->string('type_payment');
             $table->string('receipt_number', 20)->unique();

@@ -10,7 +10,7 @@ class AgreementController extends Controller
 {
     public function  index()
     {
-        return Datatables::of(Agreement::query())->make(true);
+        return Datatables::of(Agreement::query()->get()->load('user'))->make(true);
     }
 
     public function  destroy(Agreement $agreement)

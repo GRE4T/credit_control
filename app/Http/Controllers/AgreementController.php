@@ -40,6 +40,7 @@ class AgreementController extends Controller
     {
         $agreement = new Agreement();
         $agreement->name = $request->name;
+        $agreement->user_id = $request->user()->id;
         $agreement->save();
 
         return redirect()->route('agreements.index');
@@ -79,6 +80,7 @@ class AgreementController extends Controller
     public function update(UpdateAgreementRequest $request, Agreement $agreement)
     {
         $agreement->name = $request->name;
+        $agreement->user_id = $request->user()->id;
         $agreement->update();
 
         return redirect()->route('agreements.index');

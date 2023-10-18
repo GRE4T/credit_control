@@ -31,6 +31,7 @@
                             <th scope="col">Valor</th>
                             <th scope="col">Tipo de pago</th>
                             <th scope="col">N. Recibo</th>
+                            <th scope="col">Responsable</th>
                             <th scope="col">Acción</th>
                     </tr>
                     </thead>
@@ -116,6 +117,9 @@
                     },
                     {
                         data: 'receipt_number'
+                    },
+                    {
+                        data: 'user.name'
                     },
                     {
                         data: 'id',

@@ -48,6 +48,7 @@ class InvoiceController extends Controller
         $invoice = new Invoice();
         $invoice->agreement_id = $request->agreement_id;
         $invoice->headquarter_id = $request->headquarter_id;
+        $invoice->user_id = $request->user()->id;
         $invoice->invoice_pos_number = trim($request->input('invoice_pos_number'));
         $invoice->invoice_agreement = trim($request->input('invoice_agreement'));
         $invoice->value = $request->value;
@@ -95,9 +96,15 @@ class InvoiceController extends Controller
     {
         $invoice->agreement_id = $request->agreement_id;
         $invoice->headquarter_id = $request->headquarter_id;
+        $invoice->user_id = $request->user()->id;
         $invoice->invoice_pos_number = trim($request->input('invoice_pos_number'));
         $invoice->invoice_agreement = trim($request->input('invoice_agreement'));
         $invoice->detail = trim($request->detail);
+
+        if($request->filled('value')) {
+            $invoice->value = $request->value;
+        }
+
         $invoice->save();
 
         return redirect()->route('invoices.index');

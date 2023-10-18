@@ -50,21 +50,21 @@
                 </a>
                 <div class="triangle"></div>
             </li>
-            <li class="nav-item {{ request()->is('clients') ? 'active' : '' }}" >
+            <li class="nav-item {{ request()->is('payments/report') ? 'active' : '' }}" >
                 <a class="nav-item-hold" href="{{route('payments.report')}}">
                     <img src="{{ asset('assets/images/icons/informe_recaudos.png') }}" alt="icon-collection-report" class="w-40">
                     <span class="nav-text">Informe de <br> Recaudo</span>
                 </a>
                 <div class="triangle"></div>
             </li>
-            <li class="nav-item {{ request()->is('clients') ? 'active' : '' }}" >
+            <li class="nav-item {{ request()->is('invoices/report') ? 'active' : '' }}" >
                 <a class="nav-item-hold" href="{{route('invoices.report')}}">
                     <img src="{{ asset('assets/images/icons/informe_facturas.png') }}" alt="icon-collection-invoice" class="w-40">
                     <span class="nav-text">Informe de <br> Facturas</span>
                 </a>
                 <div class="triangle"></div>
             </li>
-            <li class="nav-item {{ request()->is('clients') ? 'active' : '' }}" >
+            <li class="nav-item {{ request()->is('period-cut') ? 'active' : '' }}" >
                 <a class="nav-item-hold" href="{{route('periodCut')}}">
                     <img src="{{ asset('assets/images/icons/corte.png') }}" alt="icon-court" class="w-40">
                     <span class="nav-text">Corte</span>
@@ -72,7 +72,7 @@
                 <div class="triangle"></div>
             </li>
             @if(auth()->user()->is_admin)
-                <li class="nav-item {{ request()->is('clients') ? 'active' : '' }}" >
+                <li class="nav-item {{ request()->is('users') ? 'active' : '' }}" >
                     <a class="nav-item-hold" href="{{route('users.index')}}">
                         <img src="{{ asset('assets/images/icons/user.png') }}" alt="icon-court" class="w-40">
                         <span class="nav-text">Usuarios</span>

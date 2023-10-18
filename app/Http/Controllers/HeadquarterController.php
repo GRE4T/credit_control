@@ -40,6 +40,7 @@ class HeadquarterController extends Controller
     {
         $headquarter = new Headquarter();
         $headquarter->name = $request->name;
+        $headquarter->user_id = $request->user()->id;
         $headquarter->save();
 
         return redirect()->route('headquarters.index');
@@ -79,6 +80,7 @@ class HeadquarterController extends Controller
     public function update(UpdateHeadquarterRequest $request, Headquarter $headquarter)
     {
         $headquarter->name = $request->name;
+        $headquarter->user_id = $request->user()->id;
         $headquarter->update();
 
         return redirect()->route('headquarters.index');

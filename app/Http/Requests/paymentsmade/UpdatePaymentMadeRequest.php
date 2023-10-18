@@ -29,6 +29,7 @@ class UpdatePaymentMadeRequest extends FormRequest
             'type_payment' => 'nullable|string|max:255',
             'receipt_number' => 'required|numeric|digits_between:0,20|unique:payments_made,receipt_number,' . $this->paymentsmade->id . ',id',
             'detail' => 'nullable|string',
+            'value' => 'nullable|numeric|min:0'
         ];
     }
 }

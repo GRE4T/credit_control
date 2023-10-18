@@ -28,6 +28,7 @@ class UpdateInvoiceRequest extends FormRequest
             'headquarter_id' => 'required|exists:headquarters,id',
             'invoice_pos_number' => 'required|alpha_num|max:50|unique:invoices,invoice_pos_number,'.$this->invoice->id.',id',
             'invoice_agreement' => 'required|alpha_num|max:50|unique:invoices,invoice_agreement,'.$this->invoice->id.',id',
+            'value' => 'nullable|numeric|min:0',
             'detail' => 'nullable|string'
         ];
     }

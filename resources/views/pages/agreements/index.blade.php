@@ -27,6 +27,7 @@
                         <th scope="col">Convenio</th>
                         <th scope="col">Fecha de creación</th>
                         <th scope="col">Fecha de actualización</th>
+                        <th scope="col">Responsable</th>
                         <th scope="col">Acción</th>
                     </tr>
                     </thead>
@@ -81,6 +82,9 @@
                     },
                     {
                         data: 'updated_at'
+                    },
+                    {
+                        data: 'user.name'
                     },
                     {
                         data: 'id',

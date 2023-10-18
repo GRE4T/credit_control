@@ -10,7 +10,7 @@ class HeadquarterController extends Controller
 {
     public function  index()
     {
-        return Datatables::of(Headquarter::query())->make(true);
+        return Datatables::of(Headquarter::query()->get()->load('user'))->make(true);
     }
 
     public function  destroy(Headquarter $headquarter)

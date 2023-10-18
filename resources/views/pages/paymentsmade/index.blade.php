@@ -32,6 +32,7 @@
                             <th scope="col">Tipo de pago</th>
                             <th scope="col">N. Recibo</th>
                             <th scope="col">Detalle</th>
+                            <th scope="col">Responsable</th>
                             <th scope="col">Acción</th>
                     </tr>
                     </thead>
@@ -121,6 +122,9 @@
                     },
                     {
                         data: 'detail'
+                    },
+                    {
+                        data:'user.name'
                     },
                     {
                         data: 'id',

@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\PaymentMadeController;
 use App\Http\Controllers\Api\PaymentReceivedController;
 use App\Http\Controllers\Api\PeriodCutController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,4 +48,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/users', [UserController::class, 'index']);
     Route::delete('/users/{user}', [UserController::class, 'destroy']);
     Route::put('/users/{user}/change-state', [UserController::class, 'changeStatus']);
+
+    Route::get('/home/graph-payments', [HomeController::class, 'getGraphPayments']);
+    Route::get('/home/graph-payments-by-agreement', [HomeController::class, 'getGraphPaymentsByAgreement']);
 });

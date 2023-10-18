@@ -38,7 +38,7 @@ class InvoiceController extends Controller
             'status' => 'success',
             'message' => 'Successfully executed',
             'data' => [
-                'grid' => DataTables::of($query->get()->load('agreement', 'headquarter', 'state'))->toJson(),
+                'grid' => DataTables::of($query->get()->load('agreement', 'headquarter', 'state', 'user'))->toJson(),
                 'total' => $query->sum('value')
             ]
         ], 200);

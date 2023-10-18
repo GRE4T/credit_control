@@ -45,6 +45,7 @@ class PaymentReceivedController extends Controller
         $paymentreceived = new PaymentReceived();
         $paymentreceived->agreement_id = $request->agreement_id;
         $paymentreceived->headquarter_id = $request->headquarter_id;
+        $paymentreceived->user_id = $request->user()->id;
         $paymentreceived->value = $request->value;
         $paymentreceived->type_payment = trim($request->input('type_payment'));
         $paymentreceived->receipt_number = trim($request->input('receipt_number'));
@@ -91,8 +92,14 @@ class PaymentReceivedController extends Controller
 
         $paymentreceived->agreement_id = $request->agreement_id;
         $paymentreceived->headquarter_id = $request->headquarter_id;
+        $paymentreceived->user_id = $request->user()->id;
         $paymentreceived->type_payment = trim($request->input('type_payment'));
         $paymentreceived->receipt_number = trim($request->input('receipt_number'));
+
+        if($request->filled('value')) {
+            $paymentreceived->value = $request->value;
+        }
+
         $paymentreceived->update();
 
         return redirect()->route('paymentsreceived.index');

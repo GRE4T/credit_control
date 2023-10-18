@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Configuration;
 use App\View\Components\Invoices\Filter as InvoiceFilter;
 use App\View\Components\Payments\Filter as PaymentFilter;
 use App\View\Components\PaymentsMade\Filter as PaymentMadeFilter;
@@ -32,5 +33,14 @@ class ComponentServiceProvider extends ServiceProvider
         Blade::component('invoices-filter', InvoiceFilter::class);
         Blade::component('paymentsmade-filter', PaymentMadeFilter::class);
         Blade::component('paymentsreceived-filter', PaymentReceivedFilter::class);
+
+        $configuration = Configuration::first();
+        if(is_null($configuration)){
+            $configuration = (object) [
+                'logo' =>  asset('assets/images/icons/logo.png')
+            ];
+        }
+
+        view()->share('configuration', $configuration);
     }
 }

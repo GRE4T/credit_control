@@ -35,7 +35,7 @@ class PaymentReceivedController extends Controller
             'status' => 'success',
             'message' => 'Successfully executed',
             'data' => [
-                'grid' => DataTables::of($query->get()->load('agreement', 'headquarter'))->toJson(),
+                'grid' => DataTables::of($query->get()->load('agreement', 'headquarter', 'user'))->toJson(),
                 'total' => $query->sum('value')
             ]
         ], 200);

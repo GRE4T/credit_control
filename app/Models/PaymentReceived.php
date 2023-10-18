@@ -31,5 +31,8 @@ class PaymentReceived extends Model
     public function headquarter(){
         return $this->belongsTo(Headquarter::class);
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
 

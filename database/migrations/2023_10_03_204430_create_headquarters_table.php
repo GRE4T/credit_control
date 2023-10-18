@@ -15,6 +15,7 @@ class CreateHeadquartersTable extends Migration
     {
         Schema::create('headquarters', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
             $table->string('name');
             $table->timestamps();
         });

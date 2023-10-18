@@ -24,7 +24,8 @@
         <div class="form-group col-12 col-md-6">
             <label for="username">Nombre de usuario <span class="text-danger">*</span> </label>
             <input type="text" class="form-control @error('username') is-invalid @enderror" name="username"
-                   id="username" value="{{ old('username') ? old('username') : $user->username }}" required placeholder="Ingresar nombre de usuario">
+                   id="username" value="{{ old('username') ? old('username') : $user->username }}" required
+                   placeholder="Ingresar nombre de usuario">
             @error('username')
             <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -36,6 +37,19 @@
             <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
                    id="password" @if (!isset($user->id)) required @endif placeholder="Ingresar contraseña">
             @error('password')
+            <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+            @enderror
+        </div>
+        <div class="form-group col-12 col-md-6">
+            <label for="is_admin" class="switch switch-primary mr-3">
+                <span>Administrador</span>
+                <input type="checkbox" class="form-control @error('is_admin') is-invalid @enderror" name="is_admin"
+                       id="is_admin" @if($user->is_admin) checked @endif value="1">
+                <span class="slider"></span>
+            </label>
+            @error('is_admin')
             <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>

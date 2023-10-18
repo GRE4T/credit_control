@@ -27,7 +27,8 @@ class UpdatePaymentReceivedRequest extends FormRequest
             'agreement_id' => 'required|exists:agreements,id',
             'headquarter_id' => 'required|exists:headquarters,id',
             'type_payment' => 'nullable|string|max:255',
-            'receipt_number' => 'required|numeric|alpha_num|digits_between:0,20|unique:payments_received,receipt_number,'. $this->paymentsreceived->id . ',id'
+            'receipt_number' => 'required|numeric|alpha_num|digits_between:0,20|unique:payments_received,receipt_number,'. $this->paymentsreceived->id . ',id',
+            'value' => 'nullable|numeric|min:0',
         ];
     }
 }
