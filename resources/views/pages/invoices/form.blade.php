@@ -85,8 +85,19 @@
                        value="{{ $invoice->value }}" disabled>
             </div>
         @endif
-
         <div class="form-group col-12 col-md-6">
+            <label for="expiration_date">Fecha de pago <span class="text-danger">(*)</span></label>
+            <input type="date" class="form-control @error('expiration_date') is-invalid @enderror"
+                   name="expiration_date" id="expiration_date"
+                   value="{{ old('expiration_date') ? old('expiration_date') : $invoice->expiration_date }}"
+                   required >
+            @error('expiration_date')
+            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+            @enderror
+        </div>
+        <div class="form-group col-12">
             <label for="detail">Detalle </label>
             <textarea name="detail" id="detail" cols="30" rows="10" class="form-control @error('detail') is-invalid @enderror" placeholder="Ingresar detalle">{{ old('detail') ? old('detail') : $invoice->detail  }}</textarea>
             @error('detail')

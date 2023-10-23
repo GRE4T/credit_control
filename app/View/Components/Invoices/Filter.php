@@ -30,11 +30,13 @@ class Filter extends Component
         $agreements= Agreement::all();
         $headquarters = Headquarter::all();
         $states = InvoiceState::all();
+        $paymentStatus = config('agreements.payment_status');
 
         return view('pages.invoices.components.filter', [
             'agreements' => $agreements,
             'headquarters' => $headquarters,
-            'states' => $states
+            'states' => $states,
+            'paymentStatus' => $paymentStatus,
         ]);
     }
 }

@@ -26,6 +26,7 @@ class PaymentController extends Controller
 
             unset($filters['start_date']);
             unset($filters['end_date']);
+
             foreach ($filters as $key => $value) {
                 $query->where($key, $value);
             }

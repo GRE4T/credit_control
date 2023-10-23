@@ -38,6 +38,7 @@
                         <th scope="col">Sede</th>
                         <th scope="col">Detalle</th>
                         <th scope="col">Estado</th>
+                        <th scope="col">Fecha de pago</th>
                         <th scope="col">Responsable</th>
                     </tr>
                     </thead>
@@ -128,6 +129,9 @@
                     },
                     {
                         data: 'state.name'
+                    },
+                    {
+                        data: 'expiration_date'
                     },
                     {
                         data: 'user.name'

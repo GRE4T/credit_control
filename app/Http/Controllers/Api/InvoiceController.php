@@ -12,6 +12,7 @@ use Yajra\DataTables\DataTables;
 
 class InvoiceController extends Controller
 {
+    const PAYMENT_STATUS_CURRENT = 'current';
     public function index(FilterInvoiceRequest $request)
     {
         $query = Invoice::query();
@@ -26,8 +27,24 @@ class InvoiceController extends Controller
                 $query->where('created_at', '<=', $filters['end_date']);
             }
 
+            if (isset($filters['payment_status'])) {
+                $date = date('Y-m-d');
+                if ($filters['payment_status'] == self::PAYMENT_STATUS_CURRENT) {
+                    $query->whereDate('expiration_date', '>=', $date);
+                }else{
+                    $query->whereDate('expiration_date', '<', $date);
+                }
+            }
+
+            if (isset($filters['expiration_date_end'])) {
+                $query->where('expiration_date', '<=', $filters['expiration_date_end']);
+            }
+
             unset($filters['start_date']);
             unset($filters['end_date']);
+            unset($filters['payment_status']);
+            unset($filters['expiration_date_end']);
+
             foreach ($filters as $key => $value) {
                 $query->where($key, $value);
             }

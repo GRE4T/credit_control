@@ -26,6 +26,14 @@ class Agreement extends Model
         return $this->hasMany(Invoice::class);
     }
 
+    public function paymentsMade(){
+        return $this->hasMany(PaymentMade::class);
+    }
+
+    public  function paymentsReceived(){
+        return $this->hasMany(PaymentReceived::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

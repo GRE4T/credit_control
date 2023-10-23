@@ -37,15 +37,6 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-12 col-md-4">
-                            <label for="headquarter_id">Sede </label>
-                            <select name="headquarter_id" id="headquarter_id" class="form-control">
-                                <option value="" selected>Seleccionar una opción</option>
-                                @foreach($headquarters as $headquarter)
-                                    <option value="{{ $headquarter->id }}">{{ $headquarter->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-12 col-md-4">
                             <label for="percentage">Porcentaje <strong>(%)</strong></label>
                             <input type="number" class="form-control" id="percentage"  placeholder="Ingresar porcentaje"
                                    value="0" min="0" max="100" step=".1">
@@ -62,15 +53,14 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Sede</th>
                         <th scope="col">Convenio</th>
                         <th scope="col">Recaudos</th>
                         <th scope="col">Facturado</th>
-                        <th scope="col">C. Realizados</th>
-                        <th scope="col">C. Recibidos</th>
+                        <th scope="col">P. Realizados</th>
+                        <th scope="col">P. Recibidos</th>
                         <th scope="col">%</th>
                         <th scope="col">V. %</th>
-                        <th scope="col">Cruce</th>
+                        <th scope="col">Saldo final</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -134,31 +124,28 @@
                         }
                     },
                     {
-                        data: 'headquarter'
+                        data: 'name'
                     },
                     {
-                        data: 'agreement'
-                    },
-                    {
-                        data: 'payments',
+                        data: 'payments_sum_value',
                         render(data) {
                             return parseCurrency(data);
                         }
                     },
                     {
-                        data: 'invoices',
+                        data: 'invoices_sum_value',
                         render(data) {
                             return parseCurrency(data);
                         }
                     },
                     {
-                        data: 'payments_made',
+                        data: 'payments_made_sum_value',
                         render(data) {
                             return parseCurrency(data);
                         }
                     },
                     {
-                        data: 'payments_received',
+                        data: 'payments_received_sum_value',
                         render(data) {
                             return parseCurrency(data);
                         }
@@ -170,18 +157,20 @@
                     },
                     {
                         render(data, type, row){
-                            return parseCurrency((row.invoices * percentage ) / 100);
+                            return parseCurrency((row.invoices_sum_value * percentage ) / 100);
                         }
                     },
                     {
                         render(data, type, row) {
-                            let sum = [
-                                row.payments,
-                                row.invoices,
-                                row.payments_received
-                            ].reduce((a, b) => a - b, 0);
+                            let rest = [
+                                row.payments_sum_value,
+                                ((row.invoices_sum_value * percentage ) / 100),
+                                row.payments_received_sum_value
+                            ].reduce((a, b) => a + b, 0);
 
-                            return parseCurrency((sum + row.payments_made));
+                            let balance  = ( row.invoices_sum_value + row.payments_made_sum_value) - rest;
+
+                            return `<span class="${ balance < 0 ? 'text-danger' : 'text-success'}" >${ parseCurrency(balance) }</span>`;
                         }
                     },
                 ]

@@ -187,7 +187,8 @@ return [
         'end_date' => 'fecha de fin',
         'start_date' => 'fecha de inicio',
         'percentage' => 'porcentaje',
-        'filters' => 'filtros'
+        'filters' => 'filtros',
+        'today' => 'hoy',
 
     ],
 ];

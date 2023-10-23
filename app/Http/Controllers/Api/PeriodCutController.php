@@ -17,6 +17,47 @@ class PeriodCutController extends Controller
 {
     public function index(FilterCutRequest $request)
     {
+
+        $filters = $request->filled('filters') ? $request->filters : [];
+
+        $data = Agreement::withSum([
+            'payments' => function ($query) use ($filters) {
+                $this->applyFilters($query, $filters);
+            },
+            'invoices' => function ($query) use ($filters) {
+                $query->whereHas('state', fn($subQuery) => $subQuery->where('key', '!=', config('agreements.state_3')));
+                $this->applyFilters($query, $filters);
+            },
+            'paymentsMade' => function ($query) use ($filters) {
+                $this->applyFilters($query, $filters);
+            },
+            'paymentsReceived' => function ($query) use ($filters) {
+                $this->applyFilters($query, $filters);
+            }
+        ], 'value')
+            ->where(function ($query) use ($filters) {
+                if (isset($filters['agreement_id'])) {
+                    $query->where('id', $filters['agreement_id']);
+                }
+            })
+            ->get();
+
+
+        return DataTables::of($data)->make(true);
+    }
+
+    private function  applyFilters($query, $filters){
+        if (isset($filters['start_date'])) {
+            $query->where('created_at', '>=', $filters['start_date']);
+        }
+
+        if (isset($filters['end_date'])) {
+            $query->where('created_at', '<=', $filters['end_date']);
+        }
+    }
+
+    public function index2(FilterCutRequest $request)
+    {
         $data = [];
         $agreements = Agreement::all()->pluck('name', 'id');
         $headquarters = Headquarter::all()->pluck('name', 'id');

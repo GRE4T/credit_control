@@ -29,7 +29,8 @@ class UpdateInvoiceRequest extends FormRequest
             'invoice_pos_number' => 'required|alpha_num|max:50|unique:invoices,invoice_pos_number,'.$this->invoice->id.',id',
             'invoice_agreement' => 'required|alpha_num|max:50|unique:invoices,invoice_agreement,'.$this->invoice->id.',id',
             'value' => 'nullable|numeric|min:0',
-            'detail' => 'nullable|string'
+            'detail' => 'nullable|string',
+            'expiration_date' => 'required|date|after_or_equal:'.date('Y-m-d')
         ];
     }
 }

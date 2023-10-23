@@ -11,7 +11,6 @@ class PeriodCutController extends Controller
     public function index()
     {
         return view('pages.periodCut.index',[
-            'headquarters' => Headquarter::all(),
             'agreements' => Agreement::all()
         ]);
     }

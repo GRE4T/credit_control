@@ -25,13 +25,16 @@ class FilterInvoiceRequest extends FormRequest
      */
     public function rules()
     {
+        $paymentStatus = implode(',', array_keys(config('agreements.payment_status')));
         return [
             'filters' => 'nullable|array',
             'filters.agreement_id' => 'nullable|exists:agreements,id',
             'filters.headquarter_id' => 'nullable|exists:headquarters,id',
             'filters.start_date' => 'nullable|date',
             'filters.end_date' => 'nullable|date',
-            'filters.invoice_state_id' => 'nullable|exists:invoice_states,id'
+            'filters.invoice_state_id' => 'nullable|exists:invoice_states,id',
+            'filters.payment_status' => 'nullable|string|in:' . $paymentStatus,
+            'filters.expiration_date_end' => 'nullable|date',
         ];
     }
 

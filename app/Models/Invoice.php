@@ -15,7 +15,8 @@ class Invoice extends Model
         'invoice_pos_number',
         'invoice_agreement',
         'value',
-        'detail'
+        'detail',
+        'expiration_date'
     ];
 
     protected $casts = [

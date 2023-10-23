@@ -40,6 +40,24 @@
                     @endforeach
                 </select>
             </div>
+            <div class="form-group col-12 col-md-4">
+                <label for="payment_status">Estado de pago</label>
+                <div class="input-group">
+                    <div class="input-group-prepend col-12 col-md-6 p-0">
+                        <select name="payment_status" id="payment_status" class="form-control">
+                            <option value="" selected>Seleccionar una opción</option>
+                            @foreach($paymentStatus as $key => $value)
+                                <option value="{{ $key }}">{{ $value }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="input-group-append col-12 col-md-6 p-0">
+                        <label for="expiration_date_end" class="input-group-text mb-0">Hasta <span class="ml-1"><i class="i-Calendar"></i></span></label>
+                        <input class="form-control" type="date" name="expiration_date_end" id="expiration_date_end" >
+                    </div>
+                </div>
+
+            </div>
         </div>
         <div class="form-row d-flex justify-content-end">
             <div class="form-group col-12 col-md-2">
@@ -60,10 +78,10 @@
                 const callback = eval(' {{ $callback }}');
                 $('#filters').on('submit', function (event) {
                     event.preventDefault();
-                    let params =  {};
+                    let params = {};
 
                     $(this).serializeArray().forEach(function (item) {
-                        if( item.value !== '' ){
+                        if (item.value !== '') {
                             params[item.name] = item.value;
                         }
                     });
