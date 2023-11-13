@@ -26,7 +26,7 @@ class StoreInvoiceRequest extends FormRequest
         return [
             'agreement_id' => 'required|exists:agreements,id',
             'headquarter_id' => 'required|exists:headquarters,id',
-            'invoice_pos_number' => 'required|alpha_num|max:50|unique:invoices,invoice_pos_number',
+            'invoice_pos_number' => 'nullable|alpha_num|max:50|unique:invoices,invoice_pos_number',
             'invoice_agreement' => 'required|alpha_num|max:50|unique:invoices,invoice_agreement',
             'value' => 'required|numeric|min:0',
             'detail' => 'nullable|string',

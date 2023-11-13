@@ -40,11 +40,11 @@
     </div>
     <div class="form-row">
         <div class="form-group col-12 col-md-6">
-            <label for="invoice_pos_number">Numero de factura pos # <span class="text-danger">(*)</span></label>
+            <label for="invoice_pos_number">Numero de factura pos # </label>
             <input type="text" class="form-control @error('invoice_pos_number') is-invalid @enderror"
                    name="invoice_pos_number" id="invoice_pos_number"
                    value="{{ old('invoice_pos_number') ? old('invoice_pos_number') : $invoice->invoice_pos_number }}"
-                   required maxlength="50" placeholder="Ingresar numero de factura pos">
+                   maxlength="50" placeholder="Ingresar numero de factura pos">
             @error('invoice_pos_number')
             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
