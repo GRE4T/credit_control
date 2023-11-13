@@ -50,7 +50,7 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::prefix('api')
                 ->middleware('web')
-                ->group(base_path('routes/ajax.php '));
+                ->group(base_path('routes/ajax.php'));
         });
 
         $this->explicitResolutionModels();

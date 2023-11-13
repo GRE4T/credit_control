@@ -35,6 +35,7 @@ class FilterInvoiceRequest extends FormRequest
             'filters.invoice_state_id' => 'nullable|exists:invoice_states,id',
             'filters.payment_status' => 'nullable|string|in:' . $paymentStatus,
             'filters.expiration_date_end' => 'nullable|date',
+            'filters.invoice_pos_number' => 'nullable|string'
         ];
     }
 

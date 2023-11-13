@@ -1,14 +1,20 @@
 <div>
     <form id="filters">
         <div class="form-row">
-            <div class="form-group col-12 col-md-4">
+            <div class="form-group col-12 col-md-2">
                 <label for="start_date">Desde</label>
                 <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Ingresar fecha">
             </div>
 
-            <div class="form-group col-12 col-md-4">
+            <div class="form-group col-12 col-md-2">
                 <label for="end_date">Hasta</label>
                 <input type="date" class="form-control" id="end_date" name="end_date" placeholder="Ingresar fecha">
+            </div>
+
+            <div class="form-group col-12 col-md-4">
+                <label for="invoice_pos_number">#Factura</label>
+                <input type="text" class="form-control" id="invoice_pos_number" name="invoice_pos_number" placeholder="Ingresar numero de factura"
+                       maxlength="50">
             </div>
 
             <div class="form-group col-12 col-md-4">

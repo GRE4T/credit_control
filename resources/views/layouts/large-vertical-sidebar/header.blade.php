@@ -11,7 +11,9 @@
         <div></div>
     </div>
 
-    <div style="margin: auto"></div>
+    <div style="margin: auto">
+        <h3 class="text-right text-dark">Saldos: <strong>${{ number_format( $sum_cut_register, 2 ,',', '.')  }}</strong></h3>
+    </div>
 
     <div class="header-part-right">
         <!-- Full screen toggle -->

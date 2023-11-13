@@ -69,7 +69,7 @@
         <div class="col-md-12">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title m-0 p-3">Recaudos por convenio</h5>
+                    <h2 class="card-title m-0 p-3">Recaudos por convenio</h2>
                     <div id="echart_2" style="height: 300px;"></div>
                 </div>
             </div>

@@ -38,10 +38,10 @@
     </div>
     <div class="form-row">
         <div class="form-group col-12 col-md-6">
-            <label for="credit_number">Numero de credito<span class="text-danger">(*)</span></label>
+            <label for="credit_number">Numero de credito</label>
             <input type="text" class="form-control @error('credit_number') is-invalid @enderror"
                    name="credit_number" id="credit_number"
-                   value="{{ old('credit_number') ? old('credit_number') : $payment->credit_number }}" required placeholder="Ingresar numero de credito" maxlength="50">
+                   value="{{ old('credit_number') ? old('credit_number') : $payment->credit_number }}" placeholder="Ingresar numero de credito" maxlength="50">
             @error('credit_number')
             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -49,10 +49,10 @@
             @enderror
         </div>
         <div class="form-group col-12 col-md-6">
-            <label for="credit_pos_number">Numero de credito pos<span class="text-danger">(*)</span></label>
+            <label for="credit_pos_number">Numero de credito pos</label>
             <input type="text" class="form-control @error('credit_pos_number') is-invalid @enderror"
                    name="credit_pos_number" id="credit_pos_number"
-                   value="{{ old('credit_pos_number') ? old('credit_pos_number') : $payment->credit_pos_number }}" required placeholder="Ingresar numero de credito pos" maxlength="50">
+                   value="{{ old('credit_pos_number') ? old('credit_pos_number') : $payment->credit_pos_number }}" placeholder="Ingresar numero de credito pos" maxlength="50">
             @error('credit_pos_number')
             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
