@@ -102,7 +102,7 @@
                     }
                 },
                     {
-                        data: 'created_at'
+                        data: 'date'
                     },
                     {
                         data: 'agreement.name'

@@ -50,6 +50,7 @@ class PaymentController extends Controller
         $payment->credit_pos_number = trim($request->input('credit_pos_number'));
         $payment->receipt_number = trim($request->input('receipt_number'));
         $payment->value = $request->value;
+        $payment->date = $request->date;
         $payment->save();
 
         return redirect()->route('payments.index');
@@ -96,6 +97,7 @@ class PaymentController extends Controller
         $payment->credit_number = trim($request->input('credit_number'));
         $payment->credit_pos_number = trim($request->input('credit_pos_number'));
         $payment->receipt_number = trim($request->input('receipt_number'));
+        $payment->date = $request->date;
 
         if($request->filled('value')) {
             $payment->value = $request->value;

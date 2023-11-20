@@ -13,7 +13,7 @@ use App\Http\Controllers\PaymentReceivedController;
 use App\Http\Controllers\PeriodCutController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ConfigurationController;
-
+use App\Http\Controllers\CutRegisterController;
 
 
 /*
@@ -68,6 +68,7 @@ Route::middleware('auth')->group(function () {
 
         //Period Cut
         Route::get('/period-cut', [PeriodCutController::class, 'index'])->name('periodCut');
+        Route::resource('/cut-registers', CutRegisterController::class)->except('show')->middleware('admin');
 
         //Users
         Route::resource('/users', UserController::class)->except('show')->middleware('admin');
