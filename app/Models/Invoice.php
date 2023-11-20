@@ -16,6 +16,7 @@ class Invoice extends Model
         'invoice_agreement',
         'value',
         'detail',
+        'date',
         'expiration_date'
     ];
 

@@ -30,6 +30,7 @@ class StoreInvoiceRequest extends FormRequest
             'invoice_agreement' => 'required|alpha_num|max:50|unique:invoices,invoice_agreement',
             'value' => 'required|numeric|min:0',
             'detail' => 'nullable|string',
+            'date' => 'required|date',
             'expiration_date' => 'required|date|after_or_equal:'. date('Y-m-d'),
         ];
     }

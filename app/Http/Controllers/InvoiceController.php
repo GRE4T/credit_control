@@ -53,6 +53,7 @@ class InvoiceController extends Controller
         $invoice->invoice_agreement = trim($request->input('invoice_agreement'));
         $invoice->value = $request->value;
         $invoice->detail = trim($request->detail);
+        $invoice->date = $request->date;
         $invoice->expiration_date = $request->expiration_date;
         $invoice->invoice_state_id = $state->id;
         $invoice->save();
@@ -101,13 +102,14 @@ class InvoiceController extends Controller
         $invoice->invoice_pos_number = trim($request->input('invoice_pos_number'));
         $invoice->invoice_agreement = trim($request->input('invoice_agreement'));
         $invoice->detail = trim($request->detail);
+        $invoice->date = $request->date;
         $invoice->expiration_date = $request->expiration_date;
 
         if($request->filled('value')) {
             $invoice->value = $request->value;
         }
 
-        $invoice->save();
+        $invoice->update();
 
         return redirect()->route('invoices.index');
     }

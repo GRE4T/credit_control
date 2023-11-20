@@ -17,7 +17,8 @@ class Payment extends Model
         'credit_number',
         'credit_pos_number',
         'receipt_number',
-        'value'
+        'value',
+        'date'
     ];
 
     protected $casts = [

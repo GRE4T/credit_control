@@ -29,7 +29,8 @@ class UpdatePaymentRequest extends FormRequest
             'credit_number' => 'nullable|alpha_num|max:50',
             'credit_pos_number' => 'nullable|alpha_num|max:50',
             'receipt_number' => 'required|numeric|alpha_num|digits_between:0,20|unique:payments,receipt_number,'.$this->payment->id.',id',
-            'value' => 'nullable|numeric|min:0'
+            'value' => 'nullable|numeric|min:0',
+            'date' => 'required|date'
         ];
     }
 }

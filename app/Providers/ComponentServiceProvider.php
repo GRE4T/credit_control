@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Configuration;
+use App\Models\CutRegister;
 use App\View\Components\Invoices\Filter as InvoiceFilter;
 use App\View\Components\Payments\Filter as PaymentFilter;
 use App\View\Components\PaymentsMade\Filter as PaymentMadeFilter;
@@ -51,5 +52,6 @@ class ComponentServiceProvider extends ServiceProvider
         }
 
         view()->share('configuration', $configuration);
+        view()->share('sum_cut_register', CutRegister::sum('value'));
     }
 }

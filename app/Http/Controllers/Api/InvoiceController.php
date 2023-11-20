@@ -20,11 +20,11 @@ class InvoiceController extends Controller
             $filters = $request->filters;
 
             if (isset($filters['start_date'])) {
-                $query->where('created_at', '>=', $filters['start_date']);
+                $query->where('date', '>=', $filters['start_date']);
             }
 
             if (isset($filters['end_date'])) {
-                $query->where('created_at', '<=', $filters['end_date']);
+                $query->where('date', '<=', $filters['end_date']);
             }
 
             if (isset($filters['payment_status'])) {

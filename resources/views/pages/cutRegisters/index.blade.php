@@ -4,34 +4,30 @@
     <div class="breadcrumb">
         <ul class="d-flex align-items-center">
             <li class="text-center">
-                <img src="{{asset('assets/images/icons/recaudos.png')}}" alt="" class="w-75">
+                <img src="{{asset('assets/images/icons/balance.png')}}" alt="" class="w-75">
             </li>
-            <li class="h3 bold">Modulo de Recaudos</li>
+            <li class="h3 bold">Modulo de registro de corte</li>
         </ul>
     </div>
     <div class="row mb-2">
         <div class="col text-right">
-            <a class="btn btn-success" href="{{ route('payments.create')}}">Añadir nuevo recaudo</a>
+            <a class="btn btn-success" href="{{ route('cut-registers.create')}}">Añadir nuevo registro de corte</a>
         </div>
     </div>
     <div class="card mb-4">
         <div class="card-header bg-primary text-white h5">
-            Recaudos
+            Registro de corte
         </div>
         <div class="card-body">
-            <x-payments-filter  callback="callbackFilter" />
             <div class="table-responsive-md">
-                <table id="table_payments" class="table table-borderless table-hover">
+                <table id="table_cut_register" class="table table-borderless table-hover">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Fecha</th>
-                        <th scope="col">Convenio</th>
                         <th scope="col">Valor</th>
-                        <th scope="col">Sede</th>
-                        <th scope="col">C. Pos</th>
-                        <th scope="col">N. Credito</th>
-                        <th scope="col">N. Recibo</th>
+                        <th scope="col">Fecha de corte</th>
+                        <th scope="col">Fecha de creación</th>
+                        <th scope="col">Fecha de actualización</th>
                         <th scope="col">Responsable</th>
                         <th scope="col">Acción</th>
                     </tr>
@@ -47,7 +43,6 @@
 
 @section('page-css')
     <link rel="stylesheet" href="{{asset('assets/styles/vendor/datatables.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/styles/vendor/datatables.buttons.min.css')}}">
 @endsection
 
 @section('page-js')
@@ -61,66 +56,41 @@
         'use strict'
 
         var table;
-        var filters = [];
 
         $(document).ready(() => {
-            table = $('#table_payments').DataTable({
+            table = $('#table_cut_register').DataTable({
                 dom: 'Bfrtlip',
-                buttons: [
-                    {
-                        extend: 'excel',
-                        text: 'Exportar Excel',
-                        filename: 'recaudos_' + getDateToString(),
-                        exportOptions : {
-                            columns: [0,1,2,3,4,5,6,7, 8]
-                        }
-                    }
-                ],
-                lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Todos"]],
+                buttons: [],
                 responsive: true,
                 autoWidth: false,
                 processing: true,
                 serverSide: true,
+                lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Todos"]],
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json'
                 },
-                ajax: (data, callback, settings) => {
-                    $.get('{{ url('api/payments') }}', {
-                        ...data,
-                        filters: filters
-                    }, function (response) {
-                        callback(response.data.grid.original);
-                    });
-                },
-                columns: [{
-                    data: 'id',
-                    render(data, type, row, meta) {
-                        return meta.settings._iDisplayStart + meta.row + 1;
-                    }
-                },
+                ajax: "{{ url('api/cut-registers') }}",
+                columns: [
+                    {
+                        data: 'id',
+                        render(data, type, row, meta) {
+                            return meta.settings._iDisplayStart + meta.row + 1;
+                        }
+                    },
+                    {
+                        data: 'value',
+                        render(data) {
+                            return parseCurrency(data);
+                        }
+                    },
                     {
                         data: 'date'
                     },
                     {
-                        data: 'agreement.name'
+                        data: 'created_at'
                     },
                     {
-                        data: 'value',
-                        render(data){
-                            return parseCurrency(data)
-                        }
-                    },
-                    {
-                        data: 'headquarter.name'
-                    },
-                    {
-                        data: 'credit_pos_number'
-                    },
-                    {
-                        data: 'credit_number'
-                    },
-                    {
-                        data: 'receipt_number'
+                        data: 'updated_at'
                     },
                     {
                         data: 'user.name'
@@ -129,7 +99,7 @@
                         data: 'id',
                         render(data) {
                             return `
-                    <a href="{{ url('payments') }}/${data}/edit" class="text-success mr-2">
+                    <a href="{{ url('cut-registers') }}/${data}/edit" class="text-success mr-2">
                         <i class="nav-icon i-Pen-2 font-weight-bold"></i>
                     </a>
                     <a href="javascript:void(0)" class="text-danger mr-2" onclick="deleteServer(${data})">
@@ -154,7 +124,7 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.delete("{{ url('api/payments') }}/" + id, null)
+                    axios.delete("{{ url('api/cut-registers') }}/" + id, null)
                         .then((res) => {
                             Swal.fire(
                                 '¡Eliminado!',
@@ -175,12 +145,6 @@
                 }
             })
         }
-
-        function callbackFilter(params = null) {
-            filters  = params;
-            return table.ajax.reload();
-        }
     </script>
-
-    @stack('stack-script')
 @endsection
+

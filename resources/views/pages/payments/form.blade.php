@@ -72,8 +72,20 @@
                             </span>
             @enderror
         </div>
+        <div class="form-group col-12 col-md-6">
+            <label for="date">Fecha de recaudo <span class="text-danger">(*)</span></label>
+            <input type="date" class="form-control @error('date') is-invalid @enderror"
+                   name="date" id="date"
+                   value="{{ old('date') ? old('date') : ($payment->date ?? date('Y-m-d')) }}"
+                   required >
+            @error('date')
+            <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+            @enderror
+        </div>
         @if(!isset($payment->id) || auth()->user()->is_admin )
-            <div class="form-group col-12 col-md-6">
+            <div class="form-group col-12">
                 <label for="value">Valor <span class="text-danger">(*)</span> <span id="parse_current_value" class="font-weight-bold"></span></label>
                 <input type="number" class="form-control @error('value') is-invalid @enderror"
                        name="value" id="value"
