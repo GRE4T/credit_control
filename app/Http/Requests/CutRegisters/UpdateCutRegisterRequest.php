@@ -25,7 +25,8 @@ class UpdateCutRegisterRequest extends FormRequest
     {
         return [
             'value'=>'required|numeric',
-            'date'=>'required|date'
+            'date'=>'required|date|unique:cut_registers,date',
+            'detail'=>'nullable|string',
         ];
     }
 }

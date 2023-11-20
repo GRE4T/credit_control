@@ -18,6 +18,7 @@ class CreateCutRegistersTable extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->double('value');
             $table->date('date')->unique();
+            $table->text('detail')->nullable();
             $table->timestamps();
         });
     }
