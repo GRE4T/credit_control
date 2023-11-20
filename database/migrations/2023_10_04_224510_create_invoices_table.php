@@ -21,7 +21,7 @@ class CreateInvoicesTable extends Migration
             $table->string('invoice_pos_number')->unique();
             $table->string('invoice_agreement')->unique();
             $table->double('value');
-            $table->text('detail');
+            $table->text('detail')->nullable();
             $table->date('expiration_date');
             $table->foreignId('invoice_state_id')->constrained('invoice_states');
             $table->timestamps();

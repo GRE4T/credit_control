@@ -26,6 +26,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Valor</th>
                         <th scope="col">Fecha de corte</th>
+                        <th scope="col">Detalle</th>
                         <th scope="col">Fecha de creación</th>
                         <th scope="col">Fecha de actualización</th>
                         <th scope="col">Responsable</th>
@@ -85,6 +86,9 @@
                     },
                     {
                         data: 'date'
+                    },
+                    {
+                        data: 'detail'
                     },
                     {
                         data: 'created_at'

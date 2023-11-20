@@ -12,7 +12,8 @@ class CutRegister extends Model
     protected  $fillable = [
         'user_id',
         'value',
-        'date'
+        'date',
+        'detail'
     ];
 
     protected $casts = [

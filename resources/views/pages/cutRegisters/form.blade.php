@@ -24,6 +24,15 @@
                         </span>
             @enderror
         </div>
+        <div class="form-group col-12">
+            <label for="detail">Detalle </label>
+            <textarea name="detail" id="detail" cols="30" rows="10" class="form-control @error('detail') is-invalid @enderror" placeholder="Ingresar detalle">{{ old('detail') ? old('detail') : $cutRegister->detail  }}</textarea>
+            @error('detail')
+            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+            @enderror
+        </div>
     </div>
 </div>
 @once

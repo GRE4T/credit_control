@@ -42,6 +42,7 @@ class CutRegisterController extends Controller
         $cutRegister->user_id = $request->user()->id;
         $cutRegister->value = $request->value;
         $cutRegister->date = $request->date;
+        $cutRegister->detail = trim($request->detail);
         $cutRegister->save();
 
         return  redirect()->route('cut-registers.index');
@@ -83,6 +84,7 @@ class CutRegisterController extends Controller
         $cutRegister->user_id = $request->user()->id;
         $cutRegister->value = $request->value;
         $cutRegister->date = $request->date;
+        $cutRegister->detail = trim($request->detail);
         $cutRegister->update();
 
         return  redirect()->route('cut-registers.index');
