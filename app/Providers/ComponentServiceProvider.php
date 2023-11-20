@@ -51,7 +51,9 @@ class ComponentServiceProvider extends ServiceProvider
             ];
         }
 
+
+
         view()->share('configuration', $configuration);
-        view()->share('sum_cut_register', CutRegister::sum('value'));
+        view()->share('sum_cut_register', Schema::hasTable('cut_registers') ? CutRegister::sum('value') : 0);
     }
 }
