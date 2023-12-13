@@ -78,11 +78,11 @@
             @enderror
         </div>
         <div class="form-group col-12 col-md-6">
-            <label for="expiration_date">Fecha de pago <span class="text-danger">(*)</span></label>
+            <label for="expiration_date">Fecha de pago </label>
             <input type="date" class="form-control @error('expiration_date') is-invalid @enderror"
                    name="expiration_date" id="expiration_date"
                    value="{{ old('expiration_date') ? old('expiration_date') : $invoice->expiration_date }}"
-                   required >
+                    >
             @error('expiration_date')
             <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
